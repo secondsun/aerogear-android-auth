@@ -20,7 +20,7 @@
 
     <artifactId>aerogear-android-auth-test</artifactId>
     <packaging>apk</packaging>
-    <name>AeroGear Android Auth Test</name>
+    <name>AeroGear Android Authentication Test</name>
     <url>http://aerogear.org</url>
 
     <parent>
