@@ -19,10 +19,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.aerogear</groupId>
-    <artifactId>aerogear-android-auth</artifactId>
+    <artifactId>aerogear-android-auth-parent</artifactId>
     <version>2.0.0-SNAPSHOT</version>
-    <packaging>apklib</packaging>
-    <name>AeroGear Android Authentication Library</name>
+    <packaging>pom</packaging>
+    <name>AeroGear Android Authentication Parent</name>
     <url>http://aerogear.org</url>
 
     <parent>
@@ -30,6 +30,10 @@
         <artifactId>aerogear-parent</artifactId>
         <version>0.2.4</version>
     </parent>
+
+    <modules>
+        <module>aerogear-android-auth</module>
+    </modules>
 
     <scm>
         <connection>scm:git:git@github.com:aerogear/aerogear-android-auth.git</connection>
@@ -54,7 +58,7 @@
         <!-- Plugins versions -->
         <java.version>1.7</java.version>
         <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
-        <maven.android.plugin.verson>3.8.0</maven.android.plugin.verson>
+        <maven.android.plugin.verson>3.8.2</maven.android.plugin.verson>
         <builder.helper.plugin.version>1.7</builder.helper.plugin.version>
 
         <!-- Android configs -->
@@ -134,121 +138,7 @@
             <artifactId>gson</artifactId>
         </dependency>
 
-        <!-- Test dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.robolectric</groupId>
-            <artifactId>robolectric</artifactId>
-            <version>${roboeletric.version}</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
-
-    <build>
-        <sourceDirectory>src</sourceDirectory>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                    <artifactId>android-maven-plugin</artifactId>
-                    <version>${maven.android.plugin.verson}</version>
-                    <extensions>true</extensions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven.javadoc.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sourcepath>${basedir}/src</sourcepath>
-                    <sourceFileExcludes>
-                        <exclude>
-                            **com/google/**
-                        </exclude>
-                        <exclude>**/R.java</exclude>
-                    </sourceFileExcludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <configuration>
-                    <run>
-                        <debug>${android.debug}</debug>
-                    </run>
-                    <sdk>
-                        <platform>${android.platform}</platform>
-                    </sdk>
-                    <emulator>
-                        <avd>${android.platform}</avd>
-                    </emulator>
-                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
-                    <proguard>
-                        <skip>${proguard.skip}</skip>
-                    </proguard>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>aar</goal>
-                            <goal>apklib</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>${builder.helper.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>attach-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <artifacts>
-                                <artifact>
-                                    <type>aar</type>
-                                    <file>${project.build.directory}/${project.build.finalName}.aar</file>
-                                </artifact>
-                                <artifact>
-                                    <type>jar</type>
-                                    <file>${project.build.directory}/${project.build.finalName}.jar</file>
-                                </artifact>
-                            </artifacts>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
 
