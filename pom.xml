@@ -28,11 +28,12 @@
     <parent>
         <groupId>org.jboss.aerogear</groupId>
         <artifactId>aerogear-parent</artifactId>
-        <version>0.2.4</version>
+        <version>0.2.6</version>
     </parent>
 
     <modules>
         <module>aerogear-android-auth</module>
+        <module>aerogear-android-auth-test</module>
     </modules>
 
     <scm>
@@ -58,7 +59,7 @@
         <!-- Plugins versions -->
         <java.version>1.7</java.version>
         <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
-        <maven.android.plugin.verson>3.8.2</maven.android.plugin.verson>
+        <maven.android.plugin.verson>3.8.0</maven.android.plugin.verson>
         <builder.helper.plugin.version>1.7</builder.helper.plugin.version>
 
         <!-- Android configs -->
@@ -140,5 +141,18 @@
 
     </dependencies>
 
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                    <artifactId>android-maven-plugin</artifactId>
+                    <version>${maven.android.plugin.verson}</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
 
