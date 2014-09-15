@@ -37,7 +37,7 @@ import org.jboss.aerogear.android.http.HttpException;
  * class will cache credentials and consumed by {@link org.jboss.aerogear.android.pipeline.Pipe} requests. This
  * module assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.Callback)
  * }
- * or {@link AGSecurityAuthenticationModule#logout(org.jboss.aerogear.android.Callback)
+ * or {@link #logout(org.jboss.aerogear.android.Callback)
  * }.
  *
  * {@link #enroll(java.util.Map, org.jboss.aerogear.android.Callback) } is not
@@ -46,7 +46,7 @@ import org.jboss.aerogear.android.http.HttpException;
  */
 public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule {
 
-    private static final String TAG = AGSecurityAuthenticationModule.class.getSimpleName();
+    private static final String TAG = HttpDigestAuthenticationModule.class.getSimpleName();
 
     private boolean isLoggedIn = false;
 

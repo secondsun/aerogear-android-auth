@@ -47,7 +47,7 @@ import org.jboss.aerogear.android.http.HttpException;
  * class will cache credentials and consumed by {@link Pipe} requests. This
  * module assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.Callback)
  * }
- * or {@link AGSecurityAuthenticationModule#logout(org.jboss.aerogear.android.Callback)
+ * or {@link #logout(org.jboss.aerogear.android.Callback)
  * }.
  *
  * {@link #enroll(java.util.Map, org.jboss.aerogear.android.Callback) } is not
