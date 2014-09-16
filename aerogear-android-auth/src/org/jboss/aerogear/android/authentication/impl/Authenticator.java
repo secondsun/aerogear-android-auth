@@ -88,9 +88,6 @@ public class Authenticator {
         }
 
         switch (type) {
-            case AG_SECURITY:
-                modules.put(name, new AGSecurityAuthenticationModule(baseURL, config));
-                break;
             case HTTP_BASIC:
                 modules.put(name, new HttpBasicAuthenticationModule(baseURL));
                 break;

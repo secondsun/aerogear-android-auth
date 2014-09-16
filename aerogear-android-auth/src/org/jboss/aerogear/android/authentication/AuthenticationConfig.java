@@ -28,7 +28,7 @@ public class AuthenticationConfig {
     private String logoutEndpoint = "/auth/logout";
     private String enrollEndpoint = "/auth/enroll";
 
-    private AuthType authType = AuthTypes.AG_SECURITY;
+    private AuthType authType = AuthTypes.HTTP_BASIC;
 
     private Integer timeout = 60000;
 
