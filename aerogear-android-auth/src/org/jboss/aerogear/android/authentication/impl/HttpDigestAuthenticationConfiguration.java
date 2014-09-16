@@ -16,7 +16,6 @@
 package org.jboss.aerogear.android.authentication.impl;
 
 import org.jboss.aerogear.android.Config;
-import org.jboss.aerogear.android.authentication.AuthenticationConfig;
 import org.jboss.aerogear.android.authentication.AuthenticationConfiguration;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
 

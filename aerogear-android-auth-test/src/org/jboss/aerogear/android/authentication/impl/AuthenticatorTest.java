@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jboss.aerogear.android.authentication.MainActivity;
 import org.jboss.aerogear.android.authentication.AuthType;
-import org.jboss.aerogear.android.authentication.AuthenticationConfig;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
 import org.jboss.aerogear.android.impl.helper.UnitTestUtils;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
@@ -98,7 +97,7 @@ public class AuthenticatorTest extends PatchedActivityInstrumentationTestCase<Ma
         Authenticator authenticator = new Authenticator(SIMPLE_URL);
 
         AuthenticationConfig config = new AuthenticationConfig();
-        config.setAuthType(AuthTypes.AG_SECURITY);
+        config.setAuthType(AuthTypes.HTTP_BASIC);
         config.setEnrollEndpoint("testEnroll");
         config.setLoginEndpoint("testLogin");
         config.setLogoutEndpoint("testLogout");

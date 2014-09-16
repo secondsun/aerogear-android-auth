@@ -14,15 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication;
+package org.jboss.aerogear.android.authentication.impl;
 
-import org.jboss.aerogear.android.authentication.impl.AuthTypes;
+import org.jboss.aerogear.android.authentication.AuthType;
+import org.jboss.aerogear.android.authentication.AuthenticationModule;
 
 /**
  * This is the minimum (hopefully) necessary parameters for an
  * {@link AuthenticationModule}
+ * 
+ * @deprecated This is being removed as we transition to registrations
+ * 
  */
-public class AuthenticationConfig {
+@Deprecated
+class AuthenticationConfig {
 
     private String loginEndpoint = "/auth/login";
     private String logoutEndpoint = "/auth/logout";

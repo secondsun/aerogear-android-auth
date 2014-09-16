@@ -21,7 +21,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jboss.aerogear.android.authentication.AuthenticationConfig;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
 import static org.jboss.aerogear.android.authentication.impl.AuthTypes.HTTP_BASIC;
 import org.jboss.aerogear.android.authentication.impl.loader.AuthenticationModuleAdapter;
