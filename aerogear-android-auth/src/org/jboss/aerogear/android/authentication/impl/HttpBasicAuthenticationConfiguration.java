@@ -25,8 +25,7 @@ import org.jboss.aerogear.android.authentication.AuthenticationModule;
  */
 public class HttpBasicAuthenticationConfiguration extends AuthenticationConfiguration<HttpBasicAuthenticationConfiguration> implements Config<HttpBasicAuthenticationConfiguration>{
 
-    public HttpBasicAuthenticationConfiguration(URL baseURL) {
-        super(baseURL);
+    public HttpBasicAuthenticationConfiguration() {
     }
 
     @Override

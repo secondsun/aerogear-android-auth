@@ -27,12 +27,11 @@ import org.jboss.aerogear.android.Config;
 public abstract class AuthenticationConfiguration<CONFIGURATION extends AuthenticationConfiguration<CONFIGURATION>> implements Config<CONFIGURATION> {
 
     private String name;    
-    private final URL baseURL;
+    private URL baseURL;
     
     private Collection<OnAuthenticationCreatedListener> listeners;
 
-   public AuthenticationConfiguration(URL baseURL) {
-       this.baseURL = baseURL;
+   public AuthenticationConfiguration() {
    }
     
     @Override
@@ -112,6 +111,11 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
 
     public URL getUrl() {
         return baseURL;
+    }
+
+    public CONFIGURATION url(URL baseURL) {
+        this.baseURL = baseURL;
+        return (CONFIGURATION) this;
     }
     
 }

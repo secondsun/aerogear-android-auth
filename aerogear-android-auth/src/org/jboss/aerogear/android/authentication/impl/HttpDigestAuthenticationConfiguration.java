@@ -26,8 +26,7 @@ public class HttpDigestAuthenticationConfiguration extends AuthenticationConfigu
     private String enrollEndpoint = "/auth/enroll";
     private Integer timeout = 60000;
 
-    public HttpDigestAuthenticationConfiguration(URL baseURL) {
-        super(baseURL);
+    public HttpDigestAuthenticationConfiguration() {
     }
 
     @Override
