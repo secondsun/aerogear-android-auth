@@ -97,7 +97,7 @@ public class AuthenticatorTest extends PatchedActivityInstrumentationTestCase<Ma
         Authenticator authenticator = new Authenticator(SIMPLE_URL);
 
         AuthenticationConfig config = new AuthenticationConfig();
-        config.setAuthType(AuthTypes.HTTP_BASIC);
+        config.setAuthType(AuthTypes.HTTP_DIGEST);
         config.setEnrollEndpoint("testEnroll");
         config.setLoginEndpoint("testLogin");
         config.setLogoutEndpoint("testLogout");
