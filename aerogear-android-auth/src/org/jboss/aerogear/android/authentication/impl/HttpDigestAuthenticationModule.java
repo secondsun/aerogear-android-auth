@@ -1,18 +1,18 @@
 /**
- * JBoss, Home of Professional Open Source
- * Copyright Red Hat, Inc., and individual contributors.
+ * JBoss, Home of Professional Open Source Copyright Red Hat, Inc., and
+ * individual contributors.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * 	http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package org.jboss.aerogear.android.authentication.impl;
 
@@ -34,8 +34,9 @@ import org.jboss.aerogear.android.http.HttpException;
  * This class provides Authentication using HTTP Digest
  *
  * As per the <a href="http://www.ietf.org/rfc/rfc2617.txt">HTTP RFC</a> this
- * class will cache credentials and consumed by {@link org.jboss.aerogear.android.pipeline.Pipe} requests. This
- * module assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.Callback)
+ * class will cache credentials and consumed by
+ * {@link org.jboss.aerogear.android.pipeline.Pipe} requests. This module
+ * assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.Callback)
  * }
  * or {@link #logout(org.jboss.aerogear.android.Callback)
  * }.
@@ -54,7 +55,8 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
 
     /**
      *
-     * @param baseURL the url that the other endpoints (enroll, login, eyc) will be appended to
+     * @param baseURL the url that the other endpoints (enroll, login, eyc) will
+     * be appended to
      * @param config a config object
      * @throws IllegalArgumentException if an endpoint can not be appended to
      * baseURL
@@ -89,22 +91,7 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
         THREAD_POOL_EXECUTOR.execute(new Runnable() {
             @Override
             public void run() {
-                HeaderAndBody result = null;
-                Exception exception = null;
-                try {
-                    result = runner.onEnroll(userData);
-                    isLoggedIn = true;
-                } catch (Exception e) {
-                    Log.e(TAG, "error enrolling", e);
-                    exception = e;
-                }
-
-                if (exception == null) {
-                    callback.onSuccess(result);
-                } else {
-                    callback.onFailure(exception);
-                }
-
+                callback.onFailure(new UnsupportedOperationException());
             }
         });
 
@@ -183,15 +170,15 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
     public void login(Map<String, String> loginData, Callback<HeaderAndBody> callback) {
         login(loginData.get(USERNAME_PARAMETER_NAME), loginData.get(PASSWORD_PARAMETER_NAME), callback);
     }
-    
+
     @Override
     public ModuleFields loadModule(URI relativeURI, String httpMethod, byte[] requestBody) {
         AuthorizationFields fields = this.getAuthorizationFields(relativeURI, httpMethod, requestBody);
         ModuleFields moduleFields = new ModuleFields();
-        
+
         moduleFields.setHeaders(fields.getHeaders());
         moduleFields.setQueryParameters(fields.getQueryParameters());
-        
+
         return moduleFields;
     }
 
