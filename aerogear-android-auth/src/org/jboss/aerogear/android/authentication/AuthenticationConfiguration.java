@@ -17,6 +17,7 @@ package org.jboss.aerogear.android.authentication;
 
 import java.net.URL;
 import java.util.Collection;
+import java.util.HashSet;
 import org.jboss.aerogear.android.Config;
 
 /**
@@ -29,7 +30,7 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     private String name;    
     private URL baseURL;
     
-    private Collection<OnAuthenticationCreatedListener> listeners;
+    private Collection<OnAuthenticationCreatedListener> listeners = new HashSet<OnAuthenticationCreatedListener>();
 
    public AuthenticationConfiguration() {
    }
@@ -91,6 +92,9 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
      *
      */
     public final AuthenticationModule asModule() {
+        if (baseURL == null) {
+            throw new IllegalStateException("baseURL may not be null");
+        }
         AuthenticationModule newModule = buildModule();
         for (OnAuthenticationCreatedListener listener : getOnAuthenticationCreatedListeners()) {
             listener.onAuthenticationCreated(this, newModule);
@@ -113,7 +117,7 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
         return baseURL;
     }
 
-    public CONFIGURATION url(URL baseURL) {
+    public CONFIGURATION baseURL(URL baseURL) {
         this.baseURL = baseURL;
         return (CONFIGURATION) this;
     }

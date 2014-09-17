@@ -60,7 +60,7 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
      * @throws IllegalArgumentException if an endpoint can not be appended to
      * baseURL
      */
-    public HttpDigestAuthenticationModule(URL baseURL, AuthenticationConfig config) {
+    protected HttpDigestAuthenticationModule(URL baseURL, AuthenticationConfig config) {
         this.runner = new DigestAuthenticationModuleRunner(baseURL, config);
     }
 
