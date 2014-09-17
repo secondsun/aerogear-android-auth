@@ -17,7 +17,6 @@ package org.jboss.aerogear.android.authentication.impl;
 
 import org.jboss.aerogear.android.Config;
 import org.jboss.aerogear.android.authentication.AuthenticationConfiguration;
-import org.jboss.aerogear.android.authentication.AuthenticationModule;
 
 /**
  * This is the configuration for a module which implements HTTP Basic authentication.
@@ -28,7 +27,7 @@ public class HttpBasicAuthenticationConfiguration extends AuthenticationConfigur
     }
 
     @Override
-    public AuthenticationModule buildModule() {
+    public HttpBasicAuthenticationModule buildModule() {
         HttpBasicAuthenticationModule module = new HttpBasicAuthenticationModule(super.getBaseUrl());
         return module;
     }

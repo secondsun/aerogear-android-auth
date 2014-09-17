@@ -17,7 +17,6 @@ package org.jboss.aerogear.android.authentication.impl;
 
 import org.jboss.aerogear.android.Config;
 import org.jboss.aerogear.android.authentication.AuthenticationConfiguration;
-import org.jboss.aerogear.android.authentication.AuthenticationModule;
 
 public class HttpDigestAuthenticationConfiguration extends AuthenticationConfiguration<HttpDigestAuthenticationConfiguration> implements Config<HttpDigestAuthenticationConfiguration> {
 
@@ -29,7 +28,7 @@ public class HttpDigestAuthenticationConfiguration extends AuthenticationConfigu
     }
 
     @Override
-    protected AuthenticationModule buildModule() {
+    protected HttpDigestAuthenticationModule buildModule() {
         return new HttpDigestAuthenticationModule(super.getBaseUrl(), loginEndpoint, logoutEndpoint, timeout);
     }
 
