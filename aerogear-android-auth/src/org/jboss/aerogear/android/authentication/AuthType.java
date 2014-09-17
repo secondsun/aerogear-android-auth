@@ -19,8 +19,7 @@ package org.jboss.aerogear.android.authentication;
 import org.jboss.aerogear.android.TypeDescriptor;
 
 /**
- * A interface for the types of {@link  AuthenticationModule}
- * knows how to build.
+ * A interface for the types of {@link AuthenticationModule} knows how to build.
  */
 public interface AuthType extends TypeDescriptor {
 }

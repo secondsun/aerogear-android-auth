@@ -21,16 +21,14 @@ import org.jboss.aerogear.android.ConfigurationProvider;
 import org.jboss.aerogear.android.authentication.impl.HttpBasicAuthenticationConfiguration;
 import org.jboss.aerogear.android.authentication.impl.HttpDigestAuthenticationConfiguration;
 
-
 /**
- *
+ * 
  * @author Summers
  */
 public class AuthenticationManager {
     private static Map<String, AuthenticationModule> modules = new HashMap<String, AuthenticationModule>();
 
-    private static Map<Class<? extends AuthenticationConfiguration<?>>, ConfigurationProvider<?>>
-            configurationProviderMap = new HashMap<Class<? extends AuthenticationConfiguration<?>>, ConfigurationProvider<?>>();
+    private static Map<Class<? extends AuthenticationConfiguration<?>>, ConfigurationProvider<?>> configurationProviderMap = new HashMap<Class<? extends AuthenticationConfiguration<?>>, ConfigurationProvider<?>>();
 
     private static OnAuthenticationCreatedListener onAuthenticationCreatedListener = new OnAuthenticationCreatedListener() {
         @Override
@@ -51,7 +49,7 @@ public class AuthenticationManager {
 
     /**
      * 
-     * This will add a new Configuration that this Manager can build 
+     * This will add a new Configuration that this Manager can build
      * Configurations for.
      * 
      * @param <CFG> the actual Configuration type
@@ -67,18 +65,18 @@ public class AuthenticationManager {
      * Begins a new fluent configuration stanza.
      * 
      * @param <CFG> the Configuration type.
-     * @param name an identifier which will be used to fetch the AuthenticationModule after 
-     * configuration is finished. 
+     * @param name an identifier which will be used to fetch the AuthenticationModule after
+     *            configuration is finished.
      * @param authenticationConfigurationClass the class of the configuration type.
-     *
+     * 
      * @return a AuthenticationConfiguration which can be used to build a AuthenticationModule object.
-     */            
+     */
     public static <CFG extends AuthenticationConfiguration<CFG>> CFG config(String name, Class<CFG> authenticationConfigurationClass) {
 
         @SuppressWarnings("unchecked")
         ConfigurationProvider<? extends AuthenticationConfiguration<CFG>> provider =
                 (ConfigurationProvider<? extends AuthenticationConfiguration<CFG>>)
-                        configurationProviderMap.get(authenticationConfigurationClass);
+                configurationProviderMap.get(authenticationConfigurationClass);
 
         if (provider == null) {
             throw new IllegalArgumentException("Configuration not registered!");
@@ -92,13 +90,13 @@ public class AuthenticationManager {
 
     /**
      * Fetches a named module
+     * 
      * @param name the name of the AuthenticationModule given in {@link AuthenticationManager#config(java.lang.String, java.lang.Class) }
-     *
+     * 
      * @return the named AuthenticationModule or null
      */
     public static AuthenticationModule getModule(String name) {
         return modules.get(name);
     }
 
-    
 }

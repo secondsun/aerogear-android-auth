@@ -42,17 +42,17 @@ import org.jboss.aerogear.android.http.HttpException;
 
 /**
  * This class provides Authentication using HTTP Basic
- *
+ * 
  * As per the <a href="http://www.ietf.org/rfc/rfc2617.txt">HTTP RFC</a> this
  * class will cache credentials and consumed by {@link Pipe} requests. This
  * module assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.Callback)
- * }
- * or {@link #logout(org.jboss.aerogear.android.Callback)
+ * } or
+ * {@link #logout(org.jboss.aerogear.android.Callback)
  * }.
- *
+ * 
  * {@link #enroll(java.util.Map, org.jboss.aerogear.android.Callback) } is not
  * supported and will always fail.
- *
+ * 
  */
 public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule {
 
@@ -98,10 +98,8 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
     }
 
     /**
-     * This method stores username and password. Additionally, it sets
-     * {@link #isLoggedIn} to true and calls {@link Callback#onSuccess(java.lang.Object) immediately
-     * }.
-     *
+     * This method stores username and password. Additionally, it sets {@link #isLoggedIn} to true and calls {@link Callback#onSuccess(java.lang.Object) immediately * }.
+     * 
      * @param username the username of the user
      * @param password the password of the user
      * @param callback a callback to handle the result.
@@ -120,13 +118,12 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
     }
 
     /**
-     *
+     * 
      * This method clears the username and password from the module, sets
-     * isLoggedIn to false, and removes all cookies associated with
-     * {@link #baseURL}
-     *
+     * isLoggedIn to false, and removes all cookies associated with {@link #baseURL}
+     * 
      * This method always calls {@link Callback#onSuccess(java.lang.Object) }
-     *
+     * 
      * @param callback the callback whose onsuccess method will be executed
      */
     @Override
@@ -157,12 +154,12 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
     }
 
     /**
-     *
+     * 
      * Enrolling is not supported using http basic.
-     *
+     * 
      * This method will call {@link Callback#onFailure(java.lang.Exception)} and pass
      * it a UnsupportedOperationException.
-     *
+     * 
      * @param userData this value is ignored.
      * @param callback the callback to be called
      */
@@ -194,7 +191,7 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
     /**
      * HTTP Basic defines a base 64 encoded hash to be pass as a header to serve
      * as authentication. This method calculates the value of that header.
-     *
+     * 
      * @return the http basic hash of the username and password
      */
     private String getHashedAuth() {
@@ -206,7 +203,7 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
 
     /**
      * This method replaces the characters in a character array with '0'.
-     *
+     * 
      * @param password a character array, usually a password
      */
     private void clearPassword(char[] password) {
@@ -228,10 +225,10 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
     public ModuleFields loadModule(URI relativeURI, String httpMethod, byte[] requestBody) {
         AuthorizationFields fields = this.getAuthorizationFields(relativeURI, httpMethod, requestBody);
         ModuleFields moduleFields = new ModuleFields();
-        
+
         moduleFields.setHeaders(fields.getHeaders());
         moduleFields.setQueryParameters(fields.getQueryParameters());
-        
+
         return moduleFields;
     }
 
@@ -239,6 +236,5 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
     public boolean handleError(HttpException exception) {
         return retryLogin();
     }
-    
-    
+
 }

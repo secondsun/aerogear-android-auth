@@ -19,8 +19,8 @@ package org.jboss.aerogear.android.authentication.impl.loader;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
 
 /**
- * Sometimes a AuthenticationManager will actually be wrapped in a Loader.  
- * Classes which do so implement this interface which gives them access to some 
+ * Sometimes a AuthenticationManager will actually be wrapped in a Loader.
+ * Classes which do so implement this interface which gives them access to some
  * shared Bundle Parameters.
  */
 public interface LoaderAuthenticationModule extends AuthenticationModule {

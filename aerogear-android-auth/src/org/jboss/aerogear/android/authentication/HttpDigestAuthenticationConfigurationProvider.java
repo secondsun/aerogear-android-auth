@@ -20,13 +20,14 @@ import org.jboss.aerogear.android.authentication.impl.HttpBasicAuthenticationCon
 import org.jboss.aerogear.android.authentication.impl.HttpDigestAuthenticationConfiguration;
 
 /**
- *
+ * 
  * @author Summers
  */
-class HttpDigestAuthenticationConfigurationProvider  implements ConfigurationProvider<HttpDigestAuthenticationConfiguration> {
+class HttpDigestAuthenticationConfigurationProvider implements ConfigurationProvider<HttpDigestAuthenticationConfiguration> {
 
     /**
      * Returns a new instance of {@link HttpBasicAuthenticationConfiguration}
+     * 
      * @return a new instance of {@link HttpBasicAuthenticationConfiguration}
      */
     @Override

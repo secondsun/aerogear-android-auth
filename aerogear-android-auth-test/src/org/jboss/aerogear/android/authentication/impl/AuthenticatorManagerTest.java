@@ -53,13 +53,13 @@ public class AuthenticatorManagerTest extends PatchedActivityInstrumentationTest
 
                 @Override
                 protected AuthenticationModule buildModule() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose Tools | Templates.
                 }
             }.getClass());
 
             fail("Should have thrown exception");
         } catch (IllegalArgumentException ex) {
-            //ignore
+            // ignore
         }
 
     }
@@ -89,7 +89,7 @@ public class AuthenticatorManagerTest extends PatchedActivityInstrumentationTest
             config.asModule();
             fail("Should not pass");
         } catch (IllegalStateException e) {
-            //ignore;
+            // ignore;
         }
 
     }

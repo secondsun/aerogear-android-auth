@@ -27,7 +27,7 @@ import android.support.v4.content.Loader;
 import android.util.Log;
 
 /**
- * This class is a {@link Loader} which performs an logout operation on behalf 
+ * This class is a {@link Loader} which performs an logout operation on behalf
  * of an {@link AuthenticationModule}.
  */
 public class SupportLogoutLoader extends AbstractSupportAuthenticationLoader {

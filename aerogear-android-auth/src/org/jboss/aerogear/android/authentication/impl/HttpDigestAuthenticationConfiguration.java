@@ -18,7 +18,8 @@ package org.jboss.aerogear.android.authentication.impl;
 import org.jboss.aerogear.android.Config;
 import org.jboss.aerogear.android.authentication.AuthenticationConfiguration;
 
-public class HttpDigestAuthenticationConfiguration extends AuthenticationConfiguration<HttpDigestAuthenticationConfiguration> implements Config<HttpDigestAuthenticationConfiguration> {
+public class HttpDigestAuthenticationConfiguration extends AuthenticationConfiguration<HttpDigestAuthenticationConfiguration> implements
+        Config<HttpDigestAuthenticationConfiguration> {
 
     private String loginEndpoint = "/auth/login";
     private String logoutEndpoint = "/auth/logout";

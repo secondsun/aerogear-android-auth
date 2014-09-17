@@ -47,12 +47,10 @@ import org.jboss.aerogear.android.http.HttpException;
 
 /**
  * This class manages the relationship between Android's Loader framework and
- * requests to Authentication. This class acts as a proxy for an
- * {@link AuthenticationModule} instance.
- *
+ * requests to Authentication. This class acts as a proxy for an {@link AuthenticationModule} instance.
+ * 
  * This class instantiates the Loaders from android.content and will not work on
- * devices &lt; Android 3.0. For these devices see
- * {@link SupportAuthenticationModuleAdapter }
+ * devices &lt; Android 3.0. For these devices see {@link SupportAuthenticationModuleAdapter }
  */
 public class AuthenticationModuleAdapter implements LoaderAuthenticationModule, LoaderManager.LoaderCallbacks<HeaderAndBody> {
 
@@ -208,10 +206,8 @@ public class AuthenticationModuleAdapter implements LoaderAuthenticationModule, 
 
     /**
      * This method will call the Callback for a enroll, login, or logout method
-     * on the main thread of the application. If a callback is an instance of
-     * {@link AbstractFragmentCallback} or {@link AbstractActivityCallback} then
-     * it will also configure the reference to {@link Fragment} or
-     * {@link FragmentActivity} for the callback.
+     * on the main thread of the application. If a callback is an instance of {@link AbstractFragmentCallback} or {@link AbstractActivityCallback} then
+     * it will also configure the reference to {@link Fragment} or {@link FragmentActivity} for the callback.
      */
     @Override
     public void onLoadFinished(Loader<HeaderAndBody> loader, final HeaderAndBody data) {
@@ -226,7 +222,7 @@ public class AuthenticationModuleAdapter implements LoaderAuthenticationModule, 
 
     @Override
     public void onLoaderReset(Loader<HeaderAndBody> loader) {
-        //Do nothing, should call logout on module manually.
+        // Do nothing, should call logout on module manually.
     }
 
     private void fragmentSuccess(Callback<HeaderAndBody> typelessCallback, HeaderAndBody data) {
@@ -302,10 +298,10 @@ public class AuthenticationModuleAdapter implements LoaderAuthenticationModule, 
     public ModuleFields loadModule(URI relativeURI, String httpMethod, byte[] requestBody) {
         AuthorizationFields fields = this.getAuthorizationFields(relativeURI, httpMethod, requestBody);
         ModuleFields moduleFields = new ModuleFields();
-        
+
         moduleFields.setHeaders(fields.getHeaders());
         moduleFields.setQueryParameters(fields.getQueryParameters());
-        
+
         return moduleFields;
     }
 
@@ -313,5 +309,5 @@ public class AuthenticationModuleAdapter implements LoaderAuthenticationModule, 
     public boolean handleError(HttpException exception) {
         return retryLogin();
     }
-    
+
 }

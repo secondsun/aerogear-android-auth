@@ -16,7 +16,6 @@
  */
 package org.jboss.aerogear.android.impl.helper;
 
-
 import org.mockito.ArgumentMatcher;
 import org.mockito.internal.matchers.VarargMatcher;
 

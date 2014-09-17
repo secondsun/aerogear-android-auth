@@ -22,7 +22,7 @@ import org.jboss.aerogear.android.authentication.AuthType;
  * Enum of internally supported instances of {@link AuthType}
  */
 public enum AuthTypes implements AuthType {
-    
+
     HTTP_BASIC("HTTP_BASIC"),
     HTTP_DIGEST("HTTP_DIGEST"), ;
     private final String typeDescription;

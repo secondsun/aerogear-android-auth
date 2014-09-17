@@ -16,16 +16,15 @@
 package org.jboss.aerogear.android.authentication;
 
 public interface OnAuthenticationCreatedListener {
- 
-    
-/**
-*
-* A method called when AuthenticationModules are created. Typically this will 
-* be done from {@link AuthenticationConfiguration#asModule()  }
-*
-* @param configuration the configuration of the new Pipe
-* @param auth the new AuthenticationModule
-*/
-abstract void onAuthenticationCreated(AuthenticationConfiguration<?> configuration, AuthenticationModule auth);
-    
+
+    /**
+     * 
+     * A method called when AuthenticationModules are created. Typically this will
+     * be done from {@link AuthenticationConfiguration#asModule()  }
+     * 
+     * @param configuration the configuration of the new Pipe
+     * @param auth the new AuthenticationModule
+     */
+    abstract void onAuthenticationCreated(AuthenticationConfiguration<?> configuration, AuthenticationModule auth);
+
 }

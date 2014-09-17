@@ -43,16 +43,16 @@ public abstract class AbstractAuthenticationModuleRunner {
 
     /**
      * @param baseURL the url that all of the other URLs (enroll, login, etc) will be appended to.
-     *
+     * 
      * @param loginEndpoint the login Endpoint
      * @param logoutEndpoint the logout Endpoint
      * @param enrollEndpoint the enrollEndpoint
      * @param timeout the timeout
      * 
      * @throws IllegalArgumentException if an endpoint can not be appended to
-     * baseURL
+     *             baseURL
      */
-    public AbstractAuthenticationModuleRunner(URL baseURL, String loginEndpoint, String logoutEndpoint, String enrollEndpoint, Integer timeout ) {
+    public AbstractAuthenticationModuleRunner(URL baseURL, String loginEndpoint, String logoutEndpoint, String enrollEndpoint, Integer timeout) {
         this.baseURL = baseURL;
         this.loginEndpoint = loginEndpoint;
         this.logoutEndpoint = logoutEndpoint;

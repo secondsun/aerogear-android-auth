@@ -31,18 +31,17 @@ import org.jboss.aerogear.android.http.HttpException;
 
 /**
  * This class provides Authentication using HTTP Digest
- *
+ * 
  * As per the <a href="http://www.ietf.org/rfc/rfc2617.txt">HTTP RFC</a> this
- * class will cache credentials and consumed by
- * {@link org.jboss.aerogear.android.pipeline.Pipe} requests. This module
+ * class will cache credentials and consumed by {@link org.jboss.aerogear.android.pipeline.Pipe} requests. This module
  * assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.Callback)
- * }
- * or {@link #logout(org.jboss.aerogear.android.Callback)
+ * } or
+ * {@link #logout(org.jboss.aerogear.android.Callback)
  * }.
- *
+ * 
  * {@link #enroll(java.util.Map, org.jboss.aerogear.android.Callback) } is not
  * supported and will always fail.
- *
+ * 
  */
 public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule {
 
@@ -53,18 +52,18 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
     private final DigestAuthenticationModuleRunner runner;
 
     /**
-     *
+     * 
      * @param baseURL the url that the other endpoints (enroll, login, eyc) will
-     * be appended to
+     *            be appended to
      * 
      * @param loginEndpoint the login Endpoint
-     * @param logoutEndpoint the logout Endpoint     
+     * @param logoutEndpoint the logout Endpoint
      * @param timeout the timeout
      * 
      * @throws IllegalArgumentException if an endpoint can not be appended to
-     * baseURL
+     *             baseURL
      */
-    protected HttpDigestAuthenticationModule(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout ) {
+    protected HttpDigestAuthenticationModule(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout) {
         this.runner = new DigestAuthenticationModuleRunner(baseURL, loginEndpoint, logoutEndpoint, timeout);
     }
 

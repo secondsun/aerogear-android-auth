@@ -28,7 +28,7 @@ import android.support.v4.content.AsyncTaskLoader;
  * This class provides a reference to the callback, authentication module, and
  * possible exceptions for the authentication loaders, modules, and call backs
  * which may use it.
- *
+ * 
  * This class and its subclasses use the Loaders from android.support and will
  * work on devices &lt; Android 3.0. If your application does not need to
  * support these devices see {@link AbstractAuthenticationLoader}

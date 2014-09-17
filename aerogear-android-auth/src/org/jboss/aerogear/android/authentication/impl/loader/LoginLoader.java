@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class is a {@link Loader} which performs an login operation on behalf 
+ * This class is a {@link Loader} which performs an login operation on behalf
  * of an {@link AuthenticationModule}.
  */
 public class LoginLoader extends AbstractAuthenticationLoader {

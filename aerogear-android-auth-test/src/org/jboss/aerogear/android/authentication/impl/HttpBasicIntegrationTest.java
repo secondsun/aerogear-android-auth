@@ -38,7 +38,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
     private static final URL CONTROLLER_URL;
     private static final PipeConfig AUTOBOT_CONFIG;
     private static final Pipeline PIPELINE;
-    
+
     protected static final String TAG = HttpBasicIntegrationTest.class.getSimpleName();
 
     static {

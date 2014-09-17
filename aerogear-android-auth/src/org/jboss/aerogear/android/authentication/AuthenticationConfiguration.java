@@ -22,7 +22,7 @@ import org.jboss.aerogear.android.Config;
 
 /**
  * Authentication Registration config.
- *
+ * 
  * @param <CONFIGURATION> The concrete implementation of this configuration.
  */
 public abstract class AuthenticationConfiguration<CONFIGURATION extends AuthenticationConfiguration<CONFIGURATION>> implements Config<CONFIGURATION> {
@@ -36,10 +36,10 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     }
 
     /**
-     *
+     * 
      * The name is the lookup parameter which will be used by {@link AuthenticationManager#getModule(java.lang.String)
      * }. It is automatically registered when the module is built.
-     *
+     * 
      * @return the current name
      */
     @Override
@@ -48,10 +48,10 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     }
 
     /**
-     *
+     * 
      * The name is the lookup parameter which will be used by {@link AuthenticationManager#getModule(java.lang.String)
      * }. It is automatically registered when the module is built.
-     *
+     * 
      * @param name a new name.
      * 
      * @return the current configuration
@@ -65,7 +65,7 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     /**
      * OnAuthenticationCreatedListeners are a collection of classes to be
      * notified when the configuration of the Pipe is complete.
-     *
+     * 
      * @return the current collection.
      */
     public Collection<OnAuthenticationCreatedListener> getOnAuthenticationCreatedListeners() {
@@ -75,7 +75,7 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     /**
      * OnAuthenticationCreatedListeners are a collection of classes to be
      * notified when the configuration of the Pipe is complete.
-     *
+     * 
      * @param listener new listener to add to the collection
      * @return this configuration
      */
@@ -87,7 +87,7 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     /**
      * OnAuthenticationCreatedListeners are a collection of classes to be
      * notified when the configuration of the Pipe is complete.
-     *
+     * 
      * @param listeners new collection to replace the current one
      * @return this configuration
      */
@@ -97,15 +97,15 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     }
 
     /**
-     *
+     * 
      * Creates a authenticationModule based on the current configuration and
      * notifies all listeners
-     *
+     * 
      * @return An AuthenticationModule based on this configuration
-     *
+     * 
      * @throws IllegalStateException if the AuthenticationModule can not be
-     * constructed.
-     *
+     *             constructed.
+     * 
      */
     public final AuthenticationModule asModule() {
         if (baseURL == null) {
@@ -119,12 +119,12 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     }
 
     /**
-     *
+     * 
      * Validates configuration parameters and returns a AuthenticationModule
      * instance.
-     *
+     * 
      * @return An AuthenticationModule based on this configuration
-     *
+     * 
      * @throws IllegalStateException if the Pipe can not be constructed.
      */
     protected abstract AuthenticationModule buildModule();
@@ -132,7 +132,7 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     /**
      * The baseURL is the URL that any endpoints (for example, login, logout,
      * enroll etc) will be build on.
-     *
+     * 
      * @return the baseURL
      */
     public URL getBaseUrl() {
@@ -140,10 +140,10 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     }
 
     /**
-     *
+     * 
      * The baseURL is the URL that any endpoints (for example, login, logout,
      * enroll etc) will be build on.
-     *
+     * 
      * @param baseURL a new baseURL
      * @return the configuration objects
      */

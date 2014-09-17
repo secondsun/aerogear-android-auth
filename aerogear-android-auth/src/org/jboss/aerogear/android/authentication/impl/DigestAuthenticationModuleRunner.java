@@ -61,16 +61,16 @@ public class DigestAuthenticationModuleRunner extends
 
     /**
      * @param baseURL the baseURL that all urls (login, enroll, etc) will be
-     * appended to.
+     *            appended to.
      * 
      * @param loginEndpoint the login Endpoint
-     * @param logoutEndpoint the logout Endpoint     
+     * @param logoutEndpoint the logout Endpoint
      * @param timeout the timeout
      * 
      * @throws IllegalArgumentException if an endpoint can not be appended to
-     * baseURL
+     *             baseURL
      */
-    public DigestAuthenticationModuleRunner(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout ) {
+    public DigestAuthenticationModuleRunner(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout) {
         super(baseURL, loginEndpoint, logoutEndpoint, "", timeout);
     }
 
@@ -96,7 +96,7 @@ public class DigestAuthenticationModuleRunner extends
 
             Map<String, String> authenticateHeaders = DigestHeaderUtils
                     .extractValues(exception.getHeaders().get(
-                                    WWW_AUTHENTICATE_HEADER));
+                            WWW_AUTHENTICATE_HEADER));
             realm = authenticateHeaders.get(REALM);
             domain = authenticateHeaders.get(DOMAIN);
             nonce = authenticateHeaders.get(NONCE);
@@ -113,7 +113,7 @@ public class DigestAuthenticationModuleRunner extends
                 provider.setDefaultHeader(
                         "Authorization",
                         getAuthorizationHeader(loginURL.toURI(), "GET",
-                                new byte[]{}));
+                                new byte[] {}));
             } catch (URISyntaxException ex) {
                 Log.e(TAG, ex.getMessage(), ex);
                 throw new RuntimeException(ex);
