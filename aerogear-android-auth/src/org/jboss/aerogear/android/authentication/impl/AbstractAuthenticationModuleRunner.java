@@ -21,7 +21,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
 import org.jboss.aerogear.android.Provider;
-import org.jboss.aerogear.android.authentication.AuthenticationConfig;
 import org.jboss.aerogear.android.http.HeaderAndBody;
 import org.jboss.aerogear.android.http.HttpProvider;
 import org.jboss.aerogear.android.impl.core.HttpProviderFactory;
@@ -44,22 +43,26 @@ public abstract class AbstractAuthenticationModuleRunner {
 
     /**
      * @param baseURL the url that all of the other URLs (enroll, login, etc) will be appended to.
-     * @param config a config object
+     * 
+     * @param loginEndpoint the login Endpoint
+     * @param logoutEndpoint the logout Endpoint
+     * @param enrollEndpoint the enrollEndpoint
+     * @param timeout the timeout
      * 
      * @throws IllegalArgumentException if an endpoint can not be appended to
-     * baseURL
+     *             baseURL
      */
-    public AbstractAuthenticationModuleRunner(URL baseURL, AuthenticationConfig config) {
+    public AbstractAuthenticationModuleRunner(URL baseURL, String loginEndpoint, String logoutEndpoint, String enrollEndpoint, Integer timeout) {
         this.baseURL = baseURL;
-        this.loginEndpoint = config.getLoginEndpoint();
-        this.logoutEndpoint = config.getLogoutEndpoint();
-        this.enrollEndpoint = config.getEnrollEndpoint();
+        this.loginEndpoint = loginEndpoint;
+        this.logoutEndpoint = logoutEndpoint;
+        this.enrollEndpoint = enrollEndpoint;
 
         this.loginURL = UrlUtils.appendToBaseURL(baseURL, loginEndpoint);
         this.logoutURL = UrlUtils.appendToBaseURL(baseURL, logoutEndpoint);
         this.enrollURL = UrlUtils.appendToBaseURL(baseURL, enrollEndpoint);
 
-        this.timeout = config.getTimeout();
+        this.timeout = timeout;
 
     }
 

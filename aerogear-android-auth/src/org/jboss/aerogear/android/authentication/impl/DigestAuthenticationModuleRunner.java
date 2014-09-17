@@ -29,7 +29,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import org.jboss.aerogear.android.authentication.AuthenticationConfig;
 import org.jboss.aerogear.android.http.HeaderAndBody;
 import org.jboss.aerogear.android.http.HttpException;
 import org.jboss.aerogear.android.http.HttpProvider;
@@ -62,14 +61,17 @@ public class DigestAuthenticationModuleRunner extends
 
     /**
      * @param baseURL the baseURL that all urls (login, enroll, etc) will be
-     * appended to.
-     * @param config a config object
+     *            appended to.
+     * 
+     * @param loginEndpoint the login Endpoint
+     * @param logoutEndpoint the logout Endpoint
+     * @param timeout the timeout
+     * 
      * @throws IllegalArgumentException if an endpoint can not be appended to
-     * baseURL
+     *             baseURL
      */
-    public DigestAuthenticationModuleRunner(URL baseURL,
-            AuthenticationConfig config) {
-        super(baseURL, config);
+    public DigestAuthenticationModuleRunner(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout) {
+        super(baseURL, loginEndpoint, logoutEndpoint, "", timeout);
     }
 
     @Override
@@ -94,7 +96,7 @@ public class DigestAuthenticationModuleRunner extends
 
             Map<String, String> authenticateHeaders = DigestHeaderUtils
                     .extractValues(exception.getHeaders().get(
-                                    WWW_AUTHENTICATE_HEADER));
+                            WWW_AUTHENTICATE_HEADER));
             realm = authenticateHeaders.get(REALM);
             domain = authenticateHeaders.get(DOMAIN);
             nonce = authenticateHeaders.get(NONCE);
@@ -111,7 +113,7 @@ public class DigestAuthenticationModuleRunner extends
                 provider.setDefaultHeader(
                         "Authorization",
                         getAuthorizationHeader(loginURL.toURI(), "GET",
-                                new byte[]{}));
+                                new byte[] {}));
             } catch (URISyntaxException ex) {
                 Log.e(TAG, ex.getMessage(), ex);
                 throw new RuntimeException(ex);

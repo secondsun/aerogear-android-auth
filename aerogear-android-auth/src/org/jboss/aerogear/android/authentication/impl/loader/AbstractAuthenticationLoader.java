@@ -25,12 +25,12 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 
 /**
- * This class provides a reference to the callback, authentication module, and 
- * possible exceptions for the authentication loaders, modules, and call backs 
+ * This class provides a reference to the callback, authentication module, and
+ * possible exceptions for the authentication loaders, modules, and call backs
  * which may use it.
  * 
  * This class and its subclasses use the Loaders from android.content and will not work on devices
- * &lt; Android 3.0.  For these devices see {@link AbstractSupportAuthenticationLoader}
+ * &lt; Android 3.0. For these devices see {@link AbstractSupportAuthenticationLoader}
  */
 public abstract class AbstractAuthenticationLoader extends AsyncTaskLoader<HeaderAndBody> {
 

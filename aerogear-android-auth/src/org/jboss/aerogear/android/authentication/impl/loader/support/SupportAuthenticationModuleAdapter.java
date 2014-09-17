@@ -50,12 +50,10 @@ import org.jboss.aerogear.android.http.HttpException;
 
 /**
  * This class manages the relationship between Android's Loader framework and
- * requests to Authentication. This class acts as a proxy for an
- * {@link AuthenticationModule} instance.
- *
+ * requests to Authentication. This class acts as a proxy for an {@link AuthenticationModule} instance.
+ * 
  * This class uses the Android support versions of the Loader API. If you do not
- * need to support devices &lt; Android 3.0, see
- * {@link AuthenticationModuleAdapter}
+ * need to support devices &lt; Android 3.0, see {@link AuthenticationModuleAdapter}
  */
 public class SupportAuthenticationModuleAdapter implements LoaderAuthenticationModule, LoaderManager.LoaderCallbacks<HeaderAndBody> {
 
@@ -210,9 +208,7 @@ public class SupportAuthenticationModuleAdapter implements LoaderAuthenticationM
 
     /**
      * This method will call the Callback for a enroll, login, or logout method
-     * on the main thread of the application. If a callback is an instance of
-     * {@link AbstractSupportFragmentCallback} or
-     * {@link AbstractFragmentActivityCallback} then it will also configure the
+     * on the main thread of the application. If a callback is an instance of {@link AbstractSupportFragmentCallback} or {@link AbstractFragmentActivityCallback} then it will also configure the
      * reference to {@link Fragment} or {@link FragmentActivity} for the
      * callback.
      */
@@ -229,7 +225,7 @@ public class SupportAuthenticationModuleAdapter implements LoaderAuthenticationM
 
     @Override
     public void onLoaderReset(Loader<HeaderAndBody> loader) {
-        //Do nothing, should call logout on module manually.
+        // Do nothing, should call logout on module manually.
     }
 
     private void fragmentSuccess(Callback<HeaderAndBody> typelessCallback, HeaderAndBody data) {
@@ -300,15 +296,15 @@ public class SupportAuthenticationModuleAdapter implements LoaderAuthenticationM
 
         }
     }
-    
+
     @Override
     public ModuleFields loadModule(URI relativeURI, String httpMethod, byte[] requestBody) {
         AuthorizationFields fields = this.getAuthorizationFields(relativeURI, httpMethod, requestBody);
         ModuleFields moduleFields = new ModuleFields();
-        
+
         moduleFields.setHeaders(fields.getHeaders());
         moduleFields.setQueryParameters(fields.getQueryParameters());
-        
+
         return moduleFields;
     }
 

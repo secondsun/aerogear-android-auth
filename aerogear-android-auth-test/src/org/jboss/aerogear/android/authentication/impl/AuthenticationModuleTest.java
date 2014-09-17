@@ -21,8 +21,7 @@ import org.jboss.aerogear.android.Callback;
 import org.jboss.aerogear.android.http.HeaderAndBody;
 
 /**
- * This interface sets up all of the static values for 
- * {@link AGSecurityAuthenticationModuleTest}
+ * This interface sets up all of the static values for authentication tests
  */
 public interface AuthenticationModuleTest {
 

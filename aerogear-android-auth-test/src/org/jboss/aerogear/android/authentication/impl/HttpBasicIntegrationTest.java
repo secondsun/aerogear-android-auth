@@ -27,7 +27,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.jboss.aerogear.android.authentication.MainActivity;
 import org.jboss.aerogear.android.Callback;
 import org.jboss.aerogear.android.Pipeline;
-import org.jboss.aerogear.android.authentication.AuthenticationConfig;
 import org.jboss.aerogear.android.http.HeaderAndBody;
 import org.jboss.aerogear.android.impl.pipeline.PipeConfig;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
@@ -39,8 +38,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
     private static final URL CONTROLLER_URL;
     private static final PipeConfig AUTOBOT_CONFIG;
     private static final Pipeline PIPELINE;
-    private static final Authenticator AUTHENTICATOR;
-    private static final AuthenticationConfig AUTHENTICATION_CONFIG;
+
     protected static final String TAG = HttpBasicIntegrationTest.class.getSimpleName();
 
     static {
@@ -49,10 +47,6 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
             AUTOBOT_CONFIG = new PipeConfig(CONTROLLER_URL, String.class);
             AUTOBOT_CONFIG.setEndpoint("autobots");
             PIPELINE = new Pipeline(CONTROLLER_URL);
-            AUTHENTICATOR = new Authenticator(CONTROLLER_URL);
-            AUTHENTICATION_CONFIG = new AuthenticationConfig();
-            AUTHENTICATION_CONFIG.setAuthType(AuthTypes.HTTP_BASIC);
-
         } catch (MalformedURLException ex) {
             throw new RuntimeException(ex);
         }

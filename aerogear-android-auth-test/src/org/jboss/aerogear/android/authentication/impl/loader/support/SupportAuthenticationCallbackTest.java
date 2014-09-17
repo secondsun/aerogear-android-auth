@@ -27,7 +27,7 @@ import org.jboss.aerogear.android.pipeline.support.AbstractFragmentActivityCallb
 import org.jboss.aerogear.android.pipeline.support.AbstractSupportFragmentCallback;
 import org.mockito.Mockito;
 
-@SuppressWarnings( { "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class SupportAuthenticationCallbackTest extends AndroidTestCase {
 
     public void testPassSupportFragmentCallbacks() throws IllegalArgumentException, NoSuchFieldException, IllegalAccessException {

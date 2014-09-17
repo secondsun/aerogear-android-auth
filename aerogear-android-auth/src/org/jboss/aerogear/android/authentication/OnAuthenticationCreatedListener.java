@@ -1,12 +1,11 @@
-/**
- * JBoss, Home of Professional Open Source
- * Copyright Red Hat, Inc., and individual contributors.
+/*
+ * Copyright 2014 JBoss by Red Hat.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * 	http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,10 +15,16 @@
  */
 package org.jboss.aerogear.android.authentication;
 
-import org.jboss.aerogear.android.TypeDescriptor;
+public interface OnAuthenticationCreatedListener {
 
-/**
- * A interface for the types of {@link AuthenticationModule} knows how to build.
- */
-public interface AuthType extends TypeDescriptor {
+    /**
+     * 
+     * A method called when AuthenticationModules are created. Typically this will
+     * be done from {@link AuthenticationConfiguration#asModule()  }
+     * 
+     * @param configuration the configuration of the new Pipe
+     * @param auth the new AuthenticationModule
+     */
+    abstract void onAuthenticationCreated(AuthenticationConfiguration<?> configuration, AuthenticationModule auth);
+
 }
