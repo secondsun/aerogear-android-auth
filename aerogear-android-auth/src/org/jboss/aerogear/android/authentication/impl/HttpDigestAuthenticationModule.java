@@ -56,12 +56,16 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
      *
      * @param baseURL the url that the other endpoints (enroll, login, eyc) will
      * be appended to
-     * @param config a config object
+     * 
+     * @param loginEndpoint the login Endpoint
+     * @param logoutEndpoint the logout Endpoint     
+     * @param timeout the timeout
+     * 
      * @throws IllegalArgumentException if an endpoint can not be appended to
      * baseURL
      */
-    protected HttpDigestAuthenticationModule(URL baseURL, AuthenticationConfig config) {
-        this.runner = new DigestAuthenticationModuleRunner(baseURL, config);
+    protected HttpDigestAuthenticationModule(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout ) {
+        this.runner = new DigestAuthenticationModuleRunner(baseURL, loginEndpoint, logoutEndpoint, timeout);
     }
 
     @Override

@@ -62,13 +62,16 @@ public class DigestAuthenticationModuleRunner extends
     /**
      * @param baseURL the baseURL that all urls (login, enroll, etc) will be
      * appended to.
-     * @param config a config object
+     * 
+     * @param loginEndpoint the login Endpoint
+     * @param logoutEndpoint the logout Endpoint     
+     * @param timeout the timeout
+     * 
      * @throws IllegalArgumentException if an endpoint can not be appended to
      * baseURL
      */
-    public DigestAuthenticationModuleRunner(URL baseURL,
-            AuthenticationConfig config) {
-        super(baseURL, config);
+    public DigestAuthenticationModuleRunner(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout ) {
+        super(baseURL, loginEndpoint, logoutEndpoint, "", timeout);
     }
 
     @Override

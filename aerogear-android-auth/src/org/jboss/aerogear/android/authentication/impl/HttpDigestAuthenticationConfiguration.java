@@ -31,13 +31,7 @@ public class HttpDigestAuthenticationConfiguration extends AuthenticationConfigu
 
     @Override
     protected AuthenticationModule buildModule() {
-        AuthenticationConfig config = new AuthenticationConfig();
-        config.setAuthType(AuthTypes.HTTP_DIGEST);
-        config.setEnrollEndpoint(enrollEndpoint);
-        config.setLoginEndpoint(loginEndpoint);
-        config.setLogoutEndpoint(logoutEndpoint);
-        config.setTimeout(timeout);
-        return new HttpDigestAuthenticationModule(super.getUrl(), config);
+        return new HttpDigestAuthenticationModule(super.getUrl(), loginEndpoint, logoutEndpoint, timeout);
     }
 
     public String getLoginEndpoint() {
