@@ -23,7 +23,6 @@ public class HttpDigestAuthenticationConfiguration extends AuthenticationConfigu
 
     private String loginEndpoint = "/auth/login";
     private String logoutEndpoint = "/auth/logout";
-    private String enrollEndpoint = "/auth/enroll";
     private Integer timeout = 60000;
 
     public HttpDigestAuthenticationConfiguration() {
@@ -50,15 +49,6 @@ public class HttpDigestAuthenticationConfiguration extends AuthenticationConfigu
 
     public HttpDigestAuthenticationConfiguration logoutEndpoint(String logoutEndpoint) {
         this.logoutEndpoint = logoutEndpoint;
-        return this;
-    }
-
-    public String getEnrollEndpoint() {
-        return enrollEndpoint;
-    }
-
-    public HttpDigestAuthenticationConfiguration enrollEndpoint(String enrollEndpoint) {
-        this.enrollEndpoint = enrollEndpoint;
         return this;
     }
 

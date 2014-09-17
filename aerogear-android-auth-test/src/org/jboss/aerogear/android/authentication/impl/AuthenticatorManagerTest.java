@@ -98,10 +98,10 @@ public class AuthenticatorManagerTest extends PatchedActivityInstrumentationTest
 
         HttpDigestAuthenticationConfiguration config = AuthenticationManager.config(SIMPLE_MODULE_NAME, HttpDigestAuthenticationConfiguration.class);
 
-        AuthenticationModule simpleAuthModule = config.enrollEndpoint("testEnroll").loginEndpoint("testLogin").logoutEndpoint("testLogout").baseURL(SIMPLE_URL).asModule();
+        AuthenticationModule simpleAuthModule = config.loginEndpoint("testLogin").logoutEndpoint("testLogout").baseURL(SIMPLE_URL).asModule();
 
         assertEquals(simpleAuthModule, AuthenticationManager.getModule(SIMPLE_MODULE_NAME));
-        assertEquals("testEnroll", simpleAuthModule.getEnrollEndpoint());
+
         assertEquals("testLogin", simpleAuthModule.getLoginEndpoint());
         assertEquals("testLogout", simpleAuthModule.getLogoutEndpoint());
     }
