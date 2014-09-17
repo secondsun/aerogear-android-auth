@@ -16,8 +16,8 @@
 package org.jboss.aerogear.android.authentication;
 
 import org.jboss.aerogear.android.ConfigurationProvider;
+import org.jboss.aerogear.android.authentication.impl.HttpBasicAuthenticationConfiguration;
 import org.jboss.aerogear.android.authentication.impl.HttpDigestAuthenticationConfiguration;
-import org.jboss.aerogear.android.impl.pipeline.RestfulPipeConfiguration;
 
 /**
  *
@@ -26,8 +26,8 @@ import org.jboss.aerogear.android.impl.pipeline.RestfulPipeConfiguration;
 class HttpDigestAuthenticationConfigurationProvider  implements ConfigurationProvider<HttpDigestAuthenticationConfiguration> {
 
     /**
-     * Returns a new instance of {@link RestfulPipeConfiguration}
-     * @return a new instance of {@link RestfulPipeConfiguration}
+     * Returns a new instance of {@link HttpBasicAuthenticationConfiguration}
+     * @return a new instance of {@link HttpBasicAuthenticationConfiguration}
      */
     @Override
     public HttpDigestAuthenticationConfiguration newConfiguration() {

@@ -27,19 +27,35 @@ import org.jboss.aerogear.android.Config;
  */
 public abstract class AuthenticationConfiguration<CONFIGURATION extends AuthenticationConfiguration<CONFIGURATION>> implements Config<CONFIGURATION> {
 
-    private String name;    
+    private String name;
     private URL baseURL;
-    
+
     private Collection<OnAuthenticationCreatedListener> listeners = new HashSet<OnAuthenticationCreatedListener>();
 
-   public AuthenticationConfiguration() {
-   }
-    
+    public AuthenticationConfiguration() {
+    }
+
+    /**
+     *
+     * The name is the lookup parameter which will be used by {@link AuthenticationManager#getModule(java.lang.String)
+     * }. It is automatically registered when the module is built.
+     *
+     * @return the current name
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * The name is the lookup parameter which will be used by {@link AuthenticationManager#getModule(java.lang.String)
+     * }. It is automatically registered when the module is built.
+     *
+     * @param name a new name.
+     * 
+     * @return the current configuration
+     */
     @Override
     public CONFIGURATION setName(String name) {
         this.name = name;
@@ -59,7 +75,7 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
     /**
      * OnAuthenticationCreatedListeners are a collection of classes to be
      * notified when the configuration of the Pipe is complete.
-     *     
+     *
      * @param listener new listener to add to the collection
      * @return this configuration
      */
@@ -113,13 +129,27 @@ public abstract class AuthenticationConfiguration<CONFIGURATION extends Authenti
      */
     protected abstract AuthenticationModule buildModule();
 
-    public URL getUrl() {
+    /**
+     * The baseURL is the URL that any endpoints (for example, login, logout,
+     * enroll etc) will be build on.
+     *
+     * @return the baseURL
+     */
+    public URL getBaseUrl() {
         return baseURL;
     }
 
+    /**
+     *
+     * The baseURL is the URL that any endpoints (for example, login, logout,
+     * enroll etc) will be build on.
+     *
+     * @param baseURL a new baseURL
+     * @return the configuration objects
+     */
     public CONFIGURATION baseURL(URL baseURL) {
         this.baseURL = baseURL;
         return (CONFIGURATION) this;
     }
-    
+
 }

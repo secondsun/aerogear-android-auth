@@ -30,7 +30,7 @@ public class HttpDigestAuthenticationConfiguration extends AuthenticationConfigu
 
     @Override
     protected AuthenticationModule buildModule() {
-        return new HttpDigestAuthenticationModule(super.getUrl(), loginEndpoint, logoutEndpoint, timeout);
+        return new HttpDigestAuthenticationModule(super.getBaseUrl(), loginEndpoint, logoutEndpoint, timeout);
     }
 
     public String getLoginEndpoint() {

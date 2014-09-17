@@ -25,8 +25,8 @@ import org.jboss.aerogear.android.authentication.impl.HttpBasicAuthenticationCon
 class HttpBasicAuthenticationConfigurationProvider  implements ConfigurationProvider<HttpBasicAuthenticationConfiguration> {
 
     /**
-     * Returns a new instance of {@link RestfulPipeConfiguration}
-     * @return a new instance of {@link RestfulPipeConfiguration}
+     * Returns a new instance of {@link HttpBasicAuthenticationConfiguration}
+     * @return a new instance of {@link HttpBasicAuthenticationConfiguration}
      */
     @Override
     public HttpBasicAuthenticationConfiguration newConfiguration() {
