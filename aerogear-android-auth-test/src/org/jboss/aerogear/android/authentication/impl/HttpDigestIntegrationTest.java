@@ -1,18 +1,18 @@
 /**
- * JBoss, Home of Professional Open Source Copyright Red Hat, Inc., and
- * individual contributors.
+ * JBoss, Home of Professional Open Source
+ * Copyright Red Hat, Inc., and individual contributors.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * 	http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.jboss.aerogear.android.authentication.impl;
 
@@ -26,28 +26,26 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.jboss.aerogear.android.authentication.MainActivity;
 import org.jboss.aerogear.android.Callback;
-import org.jboss.aerogear.android.Pipeline;
 import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.impl.pipeline.PipeConfig;
+import org.jboss.aerogear.android.impl.pipeline.RestfulPipeConfiguration;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.android.impl.util.VoidCallback;
 import org.jboss.aerogear.android.pipeline.Pipe;
+import org.jboss.aerogear.android.pipeline.PipeManager;
 
 @Suppress
 public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTestCase implements AuthenticationModuleTest {
 
     private static final URL CONTROLLER_URL;
-    private static final PipeConfig AUTOBOT_CONFIG;
-    private static final Pipeline PIPELINE;
+    private static final RestfulPipeConfiguration AUTOBOT_CONFIG;
 
     protected static final String TAG = HttpDigestIntegrationTest.class.getSimpleName();
 
     static {
         try {
-            CONTROLLER_URL = new URL("http://controller-aerogear.rhcloud.com/aerogear-controller-demo/");
-            AUTOBOT_CONFIG = new PipeConfig(CONTROLLER_URL, String.class);
-            AUTOBOT_CONFIG.setEndpoint("autobots");
-            PIPELINE = new Pipeline(CONTROLLER_URL);
+            CONTROLLER_URL = new URL("http://controller-aerogear.rhcloud.com/aerogear-controller-demo/autobots");
+            AUTOBOT_CONFIG = PipeManager.config("autobots", RestfulPipeConfiguration.class);
+            AUTOBOT_CONFIG.withUrl(CONTROLLER_URL);
 
         } catch (MalformedURLException ex) {
             throw new RuntimeException(ex);
@@ -61,7 +59,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
     public void testBadLogin() throws InterruptedException {
         HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
         final AtomicBoolean success = new AtomicBoolean(false);
-        AUTOBOT_CONFIG.setAuthModule(basicAuthModule);
+        AUTOBOT_CONFIG.module(basicAuthModule);
         final CountDownLatch authLatch = new CountDownLatch(1);
         basicAuthModule.login("baduser", "badpass", new Callback<HeaderAndBody>() {
 
@@ -77,7 +75,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
             }
         });
         authLatch.await(10, TimeUnit.SECONDS);
-        Pipe<String> autobots = PIPELINE.pipe(String.class, AUTOBOT_CONFIG);
+        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
@@ -102,7 +100,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
     public void testLogin() throws InterruptedException {
         HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
         final AtomicBoolean success = new AtomicBoolean(false);
-        AUTOBOT_CONFIG.setAuthModule(basicAuthModule);
+        AUTOBOT_CONFIG.module(basicAuthModule);
         final CountDownLatch authLatch = new CountDownLatch(1);
         basicAuthModule.login("agnes", "123", new Callback<HeaderAndBody>() {
 
@@ -118,7 +116,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
             }
         });
         authLatch.await(10, TimeUnit.SECONDS);
-        Pipe<String> autobots = PIPELINE.pipe(String.class, AUTOBOT_CONFIG);
+        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
@@ -143,7 +141,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
     public void testLogout() throws InterruptedException {
         HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
         final AtomicBoolean success = new AtomicBoolean(false);
-        AUTOBOT_CONFIG.setAuthModule(basicAuthModule);
+        AUTOBOT_CONFIG.module(basicAuthModule);
         final CountDownLatch authLatch = new CountDownLatch(1);
         basicAuthModule.login("agnes", "123", new Callback<HeaderAndBody>() {
 
@@ -159,7 +157,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
             }
         });
         authLatch.await(10, TimeUnit.SECONDS);
-        Pipe<String> autobots = PIPELINE.pipe(String.class, AUTOBOT_CONFIG);
+        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
