@@ -26,27 +26,25 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.jboss.aerogear.android.authentication.MainActivity;
 import org.jboss.aerogear.android.Callback;
-import org.jboss.aerogear.android.Pipeline;
 import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.impl.pipeline.PipeConfig;
+import org.jboss.aerogear.android.impl.pipeline.RestfulPipeConfiguration;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.android.impl.util.VoidCallback;
 import org.jboss.aerogear.android.pipeline.Pipe;
+import org.jboss.aerogear.android.pipeline.PipeManager;
 
 public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTestCase implements AuthenticationModuleTest {
 
     private static final URL CONTROLLER_URL;
-    private static final PipeConfig AUTOBOT_CONFIG;
-    private static final Pipeline PIPELINE;
+    private static final RestfulPipeConfiguration AUTOBOT_CONFIG;
 
     protected static final String TAG = HttpBasicIntegrationTest.class.getSimpleName();
 
     static {
         try {
-            CONTROLLER_URL = new URL("http://controller-aerogear.rhcloud.com/aerogear-controller-demo/");
-            AUTOBOT_CONFIG = new PipeConfig(CONTROLLER_URL, String.class);
-            AUTOBOT_CONFIG.setEndpoint("autobots");
-            PIPELINE = new Pipeline(CONTROLLER_URL);
+            CONTROLLER_URL = new URL("http://controller-aerogear.rhcloud.com/aerogear-controller-demo/autobots");
+            AUTOBOT_CONFIG = PipeManager.config("autobots", RestfulPipeConfiguration.class);
+            AUTOBOT_CONFIG.withUrl(CONTROLLER_URL);
         } catch (MalformedURLException ex) {
             throw new RuntimeException(ex);
         }
@@ -60,7 +58,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
     public void testBadLogin() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
-        AUTOBOT_CONFIG.setAuthModule(basicAuthModule);
+        AUTOBOT_CONFIG.module(basicAuthModule);
         basicAuthModule.login("fakeUser", "fakePass", new Callback<HeaderAndBody>() {
 
             @Override
@@ -71,7 +69,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
             public void onSuccess(HeaderAndBody arg0) {
             }
         });
-        Pipe<String> autobots = PIPELINE.pipe(String.class, AUTOBOT_CONFIG);
+        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
@@ -97,7 +95,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
     public void testLogin() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
-        AUTOBOT_CONFIG.setAuthModule(basicAuthModule);
+        AUTOBOT_CONFIG.module(basicAuthModule);
         basicAuthModule.login("john", "123", new Callback<HeaderAndBody>() {
 
             @Override
@@ -111,7 +109,8 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
 
             }
         });
-        Pipe<String> autobots = PIPELINE.pipe(String.class, AUTOBOT_CONFIG);
+        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
+
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
@@ -137,7 +136,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
     public void testLogout() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
-        AUTOBOT_CONFIG.setAuthModule(basicAuthModule);
+        AUTOBOT_CONFIG.module(basicAuthModule);
         basicAuthModule.login("john", "123", new Callback<HeaderAndBody>() {
 
             @Override
@@ -148,7 +147,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
             public void onSuccess(HeaderAndBody arg0) {
             }
         });
-        Pipe<String> autobots = PIPELINE.pipe(String.class, AUTOBOT_CONFIG);
+        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
