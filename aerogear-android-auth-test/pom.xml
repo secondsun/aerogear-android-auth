@@ -34,7 +34,7 @@
         <dexmaker.version>1.0</dexmaker.version>
         <dexmaker.mockito.version>1.0</dexmaker.mockito.version>
     </properties>
-    
+
     <dependencies>
 
         <dependency>
@@ -85,11 +85,11 @@
                     <artifactId>hamcrest-core</artifactId>
                     <groupId>org.hamcrest</groupId>
                 </exclusion>
-            
+
             </exclusions>
         </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -109,7 +109,7 @@
                     <dex>
                         <jvmArguments>
                             <jvmArgument>-Xms256m</jvmArgument>
-                            <jvmArgument>-Xmx4096m</jvmArgument>
+                            <jvmArgument>-Xmx2048m</jvmArgument>
                         </jvmArguments>
                     </dex>
                 </configuration>
