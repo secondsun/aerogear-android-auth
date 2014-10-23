@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jboss.aerogear.android.ConfigurationProvider;
-import org.jboss.aerogear.android.authentication.MainActivity;
+import org.jboss.aerogear.android.authentication.test.MainActivity;
 import org.jboss.aerogear.android.authentication.AuthenticationConfiguration;
 import org.jboss.aerogear.android.authentication.AuthenticationManager;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;

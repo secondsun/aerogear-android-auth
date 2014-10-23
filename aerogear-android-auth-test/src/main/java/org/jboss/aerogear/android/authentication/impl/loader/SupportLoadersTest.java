@@ -16,8 +16,8 @@
  */
 package org.jboss.aerogear.android.authentication.impl.loader;
 
-import android.content.Loader;
 import android.os.Bundle;
+import android.support.v4.content.Loader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -26,35 +26,34 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
-import org.jboss.aerogear.android.authentication.MainActivity;
+import org.jboss.aerogear.android.authentication.test.MainFragmentActivity;
 import org.jboss.aerogear.android.Callback;
+import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
 import org.jboss.aerogear.android.authentication.impl.HttpBasicAuthenticationModule;
-import static org.jboss.aerogear.android.authentication.impl.loader.AuthenticationModuleAdapter.Methods.LOGIN;
-import static org.jboss.aerogear.android.authentication.impl.loader.AuthenticationModuleAdapter.Methods.LOGOUT;
-import static org.jboss.aerogear.android.authentication.impl.loader.LoaderAuthenticationModule.METHOD;
+import org.jboss.aerogear.android.authentication.impl.loader.support.SupportAuthenticationModuleAdapter;
+import org.jboss.aerogear.android.authentication.impl.loader.support.SupportEnrollLoader;
+import org.jboss.aerogear.android.authentication.impl.loader.support.SupportLoginLoader;
+import org.jboss.aerogear.android.authentication.impl.loader.support.SupportLogoutLoader;
 import org.jboss.aerogear.android.http.HeaderAndBody;
 import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
 import org.jboss.aerogear.android.impl.util.VoidCallback;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyMapOf;
+import static org.mockito.Matchers.anyMap;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-public class LoadersTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+public class SupportLoadersTest extends PatchedActivityInstrumentationTestCase<MainFragmentActivity> {
 
-    public LoadersTest() {
-        super(MainActivity.class);
+    public SupportLoadersTest() {
+        super(MainFragmentActivity.class);
     }
 
     final HeaderAndBody response = new HeaderAndBody(new byte[] { 1, 2, 3, 4 }, new HashMap<String, Object>());
@@ -67,16 +66,15 @@ public class LoadersTest extends PatchedActivityInstrumentationTestCase<MainActi
         callback = new VoidCallback();
         doAnswer(new ResponseAnswer<HeaderAndBody>(response)).when(module).enroll(any(Map.class), any(Callback.class));
         doAnswer(new ResponseAnswer<HeaderAndBody>(response)).when(module).login(anyString(), anyString(), any(Callback.class));
-        doAnswer(new ResponseAnswer<HeaderAndBody>(response)).when(module).login(anyMapOf(String.class, String.class), any(Callback.class));
+        doAnswer(new ResponseAnswer<HeaderAndBody>(response)).when(module).login(anyMap(), any(Callback.class));
         doAnswer(new ResponseAnswer<Void>(null)).when(module).logout(any(Callback.class));
-        when(module.isLoggedIn()).thenReturn(Boolean.FALSE);
 
     }
 
     public void testEnrollLoader() {
         Map<String, String> params = new HashMap<String, String>();
         params.put("test", "test");
-        EnrollLoader loader = new EnrollLoader(getActivity(), callback, module, params);
+        SupportEnrollLoader loader = new SupportEnrollLoader(getActivity(), callback, module, params);
         loader.loadInBackground();
         verify(module).enroll(eq(params), any(Callback.class));
     }
@@ -84,26 +82,30 @@ public class LoadersTest extends PatchedActivityInstrumentationTestCase<MainActi
     public void testLogoutLoader() {
         Map<String, String> params = new HashMap<String, String>();
         params.put("test", "test");
-        LogoutLoader loader = new LogoutLoader(getActivity(), callback, module);
+        SupportLogoutLoader loader = new SupportLogoutLoader(getActivity(), callback, module);
         loader.loadInBackground();
         verify(module).logout(any(Callback.class));
     }
 
     public void testLoginLoader() {
-        Map<String, String> loginData = new HashMap<String, String>();
-        LoginLoader loader = new LoginLoader(getActivity(), callback, module, loginData);
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("test", "test");
+        Map<String, String> loginData = new HashMap<String, String>(4);
+        loginData.put(AbstractAuthenticationModule.USERNAME_PARAMETER_NAME, "username");
+        loginData.put(AbstractAuthenticationModule.PASSWORD_PARAMETER_NAME, "password");
+        SupportLoginLoader loader = new SupportLoginLoader(getActivity(), callback, module, loginData);
         loader.loadInBackground();
-        verify(module).login(anyMapOf(String.class, String.class), any(Callback.class));
+        verify(module).login(anyMap(), any(Callback.class));
     }
 
     public void testLoaderDoesNotCache() throws IllegalArgumentException, NoSuchFieldException, IllegalAccessException, InterruptedException, MalformedURLException {
 
         AuthenticationModule module = spy(new HttpBasicAuthenticationModule(new URL("http://test.com")));
-        CountDownLatch latch = new CountDownLatch(1);
         final AtomicBoolean loggedIn = new AtomicBoolean(false);
+        CountDownLatch latch = new CountDownLatch(1);
         final AtomicInteger loginCount = new AtomicInteger(0);
         final AtomicInteger logoutCount = new AtomicInteger(0);
-        AuthenticationModuleAdapter adapter = new AuthenticationModuleAdapter(getActivity(), module, "ignore");
+        SupportAuthenticationModuleAdapter adapter = new SupportAuthenticationModuleAdapter(getActivity(), module, "ignore");
 
         adapter = spy(adapter);
         doAnswer(new Answer() {
@@ -111,7 +113,7 @@ public class LoadersTest extends PatchedActivityInstrumentationTestCase<MainActi
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 Bundle bundle = (Bundle) invocation.getArguments()[1];
-                AuthenticationModuleAdapter.Methods method = (AuthenticationModuleAdapter.Methods) bundle.get(METHOD);
+                SupportAuthenticationModuleAdapter.Methods method = (SupportAuthenticationModuleAdapter.Methods) bundle.get(LoaderAuthenticationModule.METHOD);
                 switch (method) {
                 case LOGIN:
                     loginCount.incrementAndGet();
@@ -120,6 +122,7 @@ public class LoadersTest extends PatchedActivityInstrumentationTestCase<MainActi
                 case LOGOUT:
                     logoutCount.incrementAndGet();
                     loggedIn.set(false);
+                    break;
                 }
                 ((Callback) bundle.getSerializable(AuthenticationModuleAdapter.CALLBACK)).onSuccess(null);
                 return mock(Loader.class);
@@ -145,47 +148,6 @@ public class LoadersTest extends PatchedActivityInstrumentationTestCase<MainActi
 
         assertEquals(2, loginCount.get());
         assertEquals(2, logoutCount.get());
-
-    }
-
-    public void testLoginLoaderDoesNotCache() throws IllegalArgumentException, NoSuchFieldException, IllegalAccessException, InterruptedException, MalformedURLException {
-
-        AuthenticationModule module = new HttpBasicAuthenticationModule(new URL("http://test.com"));
-        CountDownLatch latch = new CountDownLatch(1);
-        final AtomicInteger loginCount = new AtomicInteger(0);
-        final AtomicInteger logoutCount = new AtomicInteger(0);
-        AuthenticationModuleAdapter adapter = new AuthenticationModuleAdapter(getActivity(), module, "ignore");
-
-        adapter = spy(adapter);
-        doAnswer(new Answer() {
-
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Bundle bundle = (Bundle) invocation.getArguments()[1];
-                AuthenticationModuleAdapter.Methods method = (AuthenticationModuleAdapter.Methods) bundle.get(METHOD);
-                switch (method) {
-                case LOGIN:
-                    loginCount.incrementAndGet();
-                    break;
-                case LOGOUT:
-                    logoutCount.incrementAndGet();
-                    break;
-                }
-                ((Callback) bundle.getSerializable(AuthenticationModuleAdapter.CALLBACK)).onSuccess(null);
-                return mock(Loader.class);
-            }
-        }).when(adapter).onCreateLoader(anyInt(), any(Bundle.class));
-
-        adapter.login("evilname", "password", new VoidCallback(latch));
-        assertTrue(latch.await(1, TimeUnit.SECONDS));
-
-        latch = new CountDownLatch(1);
-        adapter.logout(new VoidCallback());
-        adapter.login("evilname", "password", new VoidCallback(latch));
-        assertTrue(latch.await(2, TimeUnit.SECONDS));
-
-        assertEquals(2, loginCount.get());
-        assertEquals(1, logoutCount.get());
 
     }
 
