@@ -21,7 +21,7 @@
     <groupId>org.jboss.aerogear</groupId>
     <artifactId>aerogear-android-auth</artifactId>
     <version>2.0.0-SNAPSHOT</version>
-    <packaging>apklib</packaging>
+    <packaging>aar</packaging>
     <name>AeroGear Android Authentication Library</name>
     <url>http://aerogear.org</url>
 
@@ -38,14 +38,51 @@
         <tag>HEAD</tag>
     </scm>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>org.jboss.aerogear</groupId>
+            <artifactId>aerogear-android-core</artifactId>
+            <version>${aerogear.android.core.version}</version>
+            <type>aar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.aerogear</groupId>
+            <artifactId>aerogear-android-core</artifactId>
+            <version>${aerogear.android.core.version}</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.aerogear</groupId>
+            <artifactId>aerogear-android-pipe</artifactId>
+            <version>${aerogear.android.pipe.version}</version>
+            <type>aar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.aerogear</groupId>
+            <artifactId>aerogear-android-pipe</artifactId>
+            <version>${aerogear.android.pipe.version}</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+    </dependencies>
+
     <build>
-        <sourceDirectory>src</sourceDirectory>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                     <artifactId>android-maven-plugin</artifactId>
-                    <version>${maven.android.plugin.version}</version>
                     <extensions>true</extensions>
                 </plugin>
             </plugins>
@@ -99,15 +136,6 @@
                         <skip>${proguard.skip}</skip>
                     </proguard>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>aar</goal>
-                            <goal>apklib</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -121,10 +149,6 @@
                         </goals>
                         <configuration>
                             <artifacts>
-                                <artifact>
-                                    <type>aar</type>
-                                    <file>${project.build.directory}/${project.build.finalName}.aar</file>
-                                </artifact>
                                 <artifact>
                                     <type>jar</type>
                                     <file>${project.build.directory}/${project.build.finalName}.jar</file>

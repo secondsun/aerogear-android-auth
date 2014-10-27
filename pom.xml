@@ -53,7 +53,7 @@
 
         <!-- Plugins versions -->
         <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
-        <maven.android.plugin.version>3.8.0</maven.android.plugin.version>
+        <maven.android.plugin.version>4.0.0-rc.1</maven.android.plugin.version>
         <builder.helper.plugin.version>1.7</builder.helper.plugin.version>
 
         <!-- Android configs -->
@@ -96,45 +96,9 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.jboss.aerogear</groupId>
-            <artifactId>aerogear-android-core</artifactId>
-            <version>${aerogear.android.core.version}</version>
-            <type>apklib</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.aerogear</groupId>
-            <artifactId>aerogear-android-core</artifactId>
-            <version>${aerogear.android.core.version}</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.aerogear</groupId>
-            <artifactId>aerogear-android-pipe</artifactId>
-            <version>${aerogear.android.pipe.version}</version>
-            <type>apklib</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.aerogear</groupId>
-            <artifactId>aerogear-android-pipe</artifactId>
-            <version>${aerogear.android.pipe.version}</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
         <pluginManagement>
             <plugins>
                 <plugin>

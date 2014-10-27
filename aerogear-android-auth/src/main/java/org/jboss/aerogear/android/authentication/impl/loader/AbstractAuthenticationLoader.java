@@ -52,7 +52,7 @@ public abstract class AbstractAuthenticationLoader extends AsyncTaskLoader<Heade
         return module;
     }
 
-    boolean hasException() {
+    public boolean hasException() {
         return exception != null;
     }
 
