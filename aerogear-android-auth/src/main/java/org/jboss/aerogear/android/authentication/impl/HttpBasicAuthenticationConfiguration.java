@@ -29,7 +29,7 @@ public class HttpBasicAuthenticationConfiguration extends AuthenticationConfigur
     }
 
     @Override
-    public HttpBasicAuthenticationModule buildModule() {
+    protected HttpBasicAuthenticationModule buildModule() {
         HttpBasicAuthenticationModule module = new HttpBasicAuthenticationModule(super.getBaseUrl());
         return module;
     }
