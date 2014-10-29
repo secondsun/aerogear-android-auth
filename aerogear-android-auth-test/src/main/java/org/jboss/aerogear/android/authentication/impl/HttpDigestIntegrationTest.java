@@ -75,7 +75,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
             }
         });
         authLatch.await(10, TimeUnit.SECONDS);
-        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
+        Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
@@ -116,7 +116,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
             }
         });
         authLatch.await(10, TimeUnit.SECONDS);
-        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
+        Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
@@ -157,7 +157,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
             }
         });
         authLatch.await(10, TimeUnit.SECONDS);
-        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
+        Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
