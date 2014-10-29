@@ -69,7 +69,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
             public void onSuccess(HeaderAndBody arg0) {
             }
         });
-        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
+        Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
@@ -109,7 +109,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
 
             }
         });
-        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
+        Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
 
         final CountDownLatch latch = new CountDownLatch(1);
 
@@ -147,7 +147,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
             public void onSuccess(HeaderAndBody arg0) {
             }
         });
-        Pipe<String> autobots = AUTOBOT_CONFIG.buildPipeForClass(String.class);
+        Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
