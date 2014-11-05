@@ -16,11 +16,10 @@
   limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.jboss.aerogear.android.authentication.test"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="org.jboss.aerogear.android.authentication.test">
 
-    <uses-sdk android:minSdkVersion="15" />
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="21" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <instrumentation
@@ -38,7 +37,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>	
+            </intent-filter>
         </activity>
         <activity
             android:name=".MainFragmentActivity"
@@ -46,7 +45,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>	
+            </intent-filter>
         </activity>
     </application>
 
