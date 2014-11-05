@@ -186,7 +186,7 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
 
     @Override
     public boolean handleError(HttpException exception) {
-        return retryLogin();
+        return isLoggedIn() && retryLogin();
     }
 
 }
