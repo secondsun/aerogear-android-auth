@@ -17,7 +17,6 @@
 package org.jboss.aerogear.android.authentication.impl;
 
 import android.util.Log;
-import com.google.common.base.Strings;
 
 import java.net.CookieManager;
 import java.net.CookieStore;
@@ -203,7 +202,7 @@ public class DigestAuthenticationModuleRunner extends
                 .append(",nonce=\"").append(nonce).append('"')
                 .append(",uri=\"").append(uri.toString()).append('"')
                 .append(",response=\"").append(digestResponse).append('"');
-        if (!Strings.isNullOrEmpty(qop)) {
+        if (!(qop == null || qop.isEmpty())) {
             sb.append(",qop=").append(qop).append(",nc=").append(nonce_count)
                     .append(",cnonce=\"").append(cnonce).append('"')
                     .append(",opaque=\"").append(opaque).append('"');

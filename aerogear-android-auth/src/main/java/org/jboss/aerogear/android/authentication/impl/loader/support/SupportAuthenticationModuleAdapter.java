@@ -39,8 +39,8 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.util.Log;
 
-import com.google.common.base.Objects;
 import java.net.URI;
+import java.util.Arrays;
 import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
 import static org.jboss.aerogear.android.authentication.impl.loader.LoaderAuthenticationModule.CALLBACK;
 import static org.jboss.aerogear.android.authentication.impl.loader.LoaderAuthenticationModule.METHOD;
@@ -114,7 +114,7 @@ public class SupportAuthenticationModuleAdapter implements LoaderAuthenticationM
 
     @Override
     public void enroll(Map<String, String> userData, Callback<HeaderAndBody> callback) {
-        int id = Objects.hashCode(name, userData, callback);
+        int id = Arrays.hashCode(new Object[]{name, userData, callback});
         Bundle bundle = new Bundle();
         bundle.putSerializable(CALLBACK, callback);
         bundle.putSerializable(PARAMS, new HashMap(userData));
@@ -132,7 +132,7 @@ public class SupportAuthenticationModuleAdapter implements LoaderAuthenticationM
 
     @Override
     public void login(Map<String, String> loginData, Callback<HeaderAndBody> callback) {
-        int id = Objects.hashCode(name, loginData, callback, Math.random());
+        int id = Arrays.hashCode(new Object[]{name, loginData, callback, Math.random()});
         Bundle bundle = new Bundle();
         Bundle loginBundle = new Bundle();
 
@@ -152,7 +152,7 @@ public class SupportAuthenticationModuleAdapter implements LoaderAuthenticationM
 
     @Override
     public void logout(Callback<Void> callback) {
-        int id = Objects.hashCode(name, callback);
+        int id = Arrays.hashCode(new Object[]{name, callback});
         Bundle bundle = new Bundle();
         bundle.putSerializable(CALLBACK, callback);
         bundle.putSerializable(METHOD, SupportAuthenticationModuleAdapter.Methods.LOGOUT);
