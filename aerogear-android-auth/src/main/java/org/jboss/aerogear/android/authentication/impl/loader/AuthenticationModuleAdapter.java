@@ -39,8 +39,8 @@ import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.google.common.base.Objects;
 import java.net.URI;
+import java.util.Arrays;
 import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
 import org.jboss.aerogear.android.code.ModuleFields;
 import org.jboss.aerogear.android.http.HttpException;
@@ -111,7 +111,7 @@ public class AuthenticationModuleAdapter implements LoaderAuthenticationModule, 
 
     @Override
     public void enroll(Map<String, String> userData, Callback<HeaderAndBody> callback) {
-        int id = Objects.hashCode(name, userData, callback);
+        int id = Arrays.hashCode(new Object[]{name, userData, callback});
         Bundle bundle = new Bundle();
         bundle.putSerializable(CALLBACK, callback);
         bundle.putSerializable(PARAMS, new HashMap(userData));
@@ -129,7 +129,7 @@ public class AuthenticationModuleAdapter implements LoaderAuthenticationModule, 
 
     @Override
     public void login(Map<String, String> loginData, Callback<HeaderAndBody> callback) {
-        int id = Objects.hashCode(name, loginData, callback);
+        int id = Arrays.hashCode(new Object[]{name, loginData, callback});
         Bundle bundle = new Bundle();
         Bundle loginBundle = new Bundle();
 
@@ -150,7 +150,7 @@ public class AuthenticationModuleAdapter implements LoaderAuthenticationModule, 
 
     @Override
     public void logout(Callback<Void> callback) {
-        int id = Objects.hashCode(name, callback);
+        int id = Arrays.hashCode(new Object[]{name, callback});
         Bundle bundle = new Bundle();
         bundle.putSerializable(CALLBACK, callback);
         bundle.putSerializable(METHOD, AuthenticationModuleAdapter.Methods.LOGOUT);
