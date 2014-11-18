@@ -24,7 +24,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.jboss.aerogear.android.authentication.impl.loader.support.SupportAuthenticationModuleAdapter;
 import org.jboss.aerogear.android.impl.reflection.FieldNotFoundException;
 import org.mockito.Mockito;
 
@@ -131,7 +130,7 @@ public class UnitTestUtils {
         }
     }
 
-    public static Object getPrivateEnum(Class<SupportAuthenticationModuleAdapter> klass, String enumName, String constantName) {
+    public static Object getPrivateEnum(Class klass, String enumName, String constantName) {
         for (Class declaredClass : klass.getDeclaredClasses()) {
             if (declaredClass.getCanonicalName().equals(enumName)) {
                 for (Object t : declaredClass.getEnumConstants()) {
