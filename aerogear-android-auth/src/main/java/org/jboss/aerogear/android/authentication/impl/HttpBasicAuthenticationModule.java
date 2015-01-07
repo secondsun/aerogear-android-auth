@@ -29,7 +29,6 @@ import java.util.Map;
 
 import org.jboss.aerogear.android.Callback;
 import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
-import org.jboss.aerogear.android.authentication.AuthorizationFields;
 import org.jboss.aerogear.android.http.HeaderAndBody;
 import org.jboss.aerogear.android.pipeline.Pipe;
 
@@ -174,20 +173,6 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
 
     }
 
-    @Override
-    public AuthorizationFields getAuthorizationFields(URI requestUri, String method, byte[] requestBody) {
-        AuthorizationFields fields = new AuthorizationFields();
-        List<Pair<String, String>> headerList = new ArrayList<Pair<String, String>>(1);
-        headerList.add(new Pair<String, String>(BASIC_HEADER, getHashedAuth()));
-        fields.setHeaders(headerList);
-        return fields;
-    }
-
-    @Override
-    public boolean retryLogin() {
-        return false;
-    }
-
     /**
      * HTTP Basic defines a base 64 encoded hash to be pass as a header to serve
      * as authentication. This method calculates the value of that header.
@@ -223,18 +208,20 @@ public class HttpBasicAuthenticationModule extends AbstractAuthenticationModule 
 
     @Override
     public ModuleFields loadModule(URI relativeURI, String httpMethod, byte[] requestBody) {
-        AuthorizationFields fields = this.getAuthorizationFields(relativeURI, httpMethod, requestBody);
-        ModuleFields moduleFields = new ModuleFields();
+     
+        ModuleFields fields = new ModuleFields();
 
-        moduleFields.setHeaders(fields.getHeaders());
-        moduleFields.setQueryParameters(fields.getQueryParameters());
-
-        return moduleFields;
+        List<Pair<String, String>> headerList = new ArrayList<Pair<String, String>>(1);
+        headerList.add(new Pair<String, String>(BASIC_HEADER, getHashedAuth()));
+        
+        fields.setHeaders(headerList);
+        
+        return fields;
     }
 
     @Override
     public boolean handleError(HttpException exception) {
-        return retryLogin();
+        return false;
     }
 
 }
