@@ -24,7 +24,6 @@ import org.jboss.aerogear.android.Callback;
 import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
 import static org.jboss.aerogear.android.authentication.AbstractAuthenticationModule.PASSWORD_PARAMETER_NAME;
 import static org.jboss.aerogear.android.authentication.AbstractAuthenticationModule.USERNAME_PARAMETER_NAME;
-import org.jboss.aerogear.android.authentication.AuthorizationFields;
 import org.jboss.aerogear.android.code.ModuleFields;
 import org.jboss.aerogear.android.http.HeaderAndBody;
 import org.jboss.aerogear.android.http.HttpException;
@@ -153,18 +152,6 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
         return isLoggedIn;
     }
 
-    @Override
-    public AuthorizationFields getAuthorizationFields(URI requestUri, String method, byte[] requestBody) {
-        AuthorizationFields fields = new AuthorizationFields();
-        fields.addHeader("Authorization", runner.getAuthorizationHeader(requestUri, method, requestBody));
-        return fields;
-    }
-
-    @Override
-    public boolean retryLogin() {
-        return runner.retryLogin();
-    }
-
     /**
      * {@inheritDoc }
      */
@@ -175,18 +162,15 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
 
     @Override
     public ModuleFields loadModule(URI relativeURI, String httpMethod, byte[] requestBody) {
-        AuthorizationFields fields = this.getAuthorizationFields(relativeURI, httpMethod, requestBody);
-        ModuleFields moduleFields = new ModuleFields();
+        ModuleFields fields = new ModuleFields();
+        fields.addHeader("Authorization", runner.getAuthorizationHeader(relativeURI, httpMethod, requestBody));
 
-        moduleFields.setHeaders(fields.getHeaders());
-        moduleFields.setQueryParameters(fields.getQueryParameters());
-
-        return moduleFields;
+        return fields;
     }
 
     @Override
     public boolean handleError(HttpException exception) {
-        return isLoggedIn() && retryLogin();
+        return isLoggedIn() && runner.retryLogin();
     }
 
 }
