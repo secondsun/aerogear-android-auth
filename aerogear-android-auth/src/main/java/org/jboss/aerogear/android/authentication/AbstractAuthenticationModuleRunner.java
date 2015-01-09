@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
-import org.jboss.aerogear.android.Provider;
-import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.http.HttpProvider;
-import org.jboss.aerogear.android.impl.core.HttpProviderFactory;
-import org.jboss.aerogear.android.impl.util.UrlUtils;
+import org.jboss.aerogear.android.core.Provider;
+import org.jboss.aerogear.android.pipe.http.HeaderAndBody;
+import org.jboss.aerogear.android.pipe.http.HttpProvider;
+import org.jboss.aerogear.android.pipe.http.HttpProviderFactory;
+import org.jboss.aerogear.android.pipe.util.UrlUtils;
 
 import android.util.Log;
 
@@ -91,9 +91,9 @@ public abstract class AbstractAuthenticationModuleRunner {
         return logoutEndpoint;
     }
 
-    abstract HeaderAndBody onEnroll(final Map<String, String> userData);
+    public abstract HeaderAndBody onEnroll(final Map<String, String> userData);
 
-    abstract HeaderAndBody onLogin(final String username, final String password);
+    public abstract HeaderAndBody onLogin(final String username, final String password);
 
-    abstract void onLogout();
+    public abstract void onLogout();
 }

@@ -18,14 +18,12 @@ package org.jboss.aerogear.android.authentication;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.jboss.aerogear.android.ConfigurationProvider;
-import org.jboss.aerogear.android.authentication.impl.HttpBasicAuthenticationConfiguration;
-import org.jboss.aerogear.android.authentication.impl.HttpDigestAuthenticationConfiguration;
+import org.jboss.aerogear.android.core.ConfigurationProvider;
+import org.jboss.aerogear.android.authentication.basic.HttpBasicAuthenticationConfiguration;
+import org.jboss.aerogear.android.authentication.basic.HttpBasicAuthenticationConfigurationProvider;
+import org.jboss.aerogear.android.authentication.digest.HttpDigestAuthenticationConfiguration;
+import org.jboss.aerogear.android.authentication.digest.HttpDigestAuthenticationConfigurationProvider;
 
-/**
- * 
- * @author Summers
- */
 public class AuthenticationManager {
     private static Map<String, AuthenticationModule> modules = new HashMap<String, AuthenticationModule>();
 

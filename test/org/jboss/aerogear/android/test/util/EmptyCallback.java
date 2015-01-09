@@ -16,7 +16,7 @@
  */
 package org.jboss.aerogear.android.test.util;
 
-import org.jboss.aerogear.android.Callback;
+import org.jboss.aerogear.android.core.Callback;
 
 /**
  * This class is just a blank callback.

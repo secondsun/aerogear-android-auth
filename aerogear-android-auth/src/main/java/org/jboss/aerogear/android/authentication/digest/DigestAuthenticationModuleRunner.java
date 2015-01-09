@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.digest;
 
 import android.util.Log;
 
@@ -28,9 +28,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.http.HttpException;
-import org.jboss.aerogear.android.http.HttpProvider;
+
+import org.jboss.aerogear.android.authentication.AbstractAuthenticationModuleRunner;
+import org.jboss.aerogear.android.pipe.http.HeaderAndBody;
+import org.jboss.aerogear.android.pipe.http.HttpException;
+import org.jboss.aerogear.android.pipe.http.HttpProvider;
 import org.json.JSONObject;
 
 public class DigestAuthenticationModuleRunner extends

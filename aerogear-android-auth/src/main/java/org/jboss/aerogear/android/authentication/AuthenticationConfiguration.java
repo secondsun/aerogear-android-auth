@@ -19,7 +19,7 @@ package org.jboss.aerogear.android.authentication;
 import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
-import org.jboss.aerogear.android.Config;
+import org.jboss.aerogear.android.core.Config;
 
 /**
  * Authentication Registration config.

@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.basic;
 
-import org.jboss.aerogear.android.Config;
+import org.jboss.aerogear.android.core.Config;
 import org.jboss.aerogear.android.authentication.AuthenticationConfiguration;
 
 /**

@@ -19,10 +19,10 @@ package org.jboss.aerogear.android.authentication;
 import java.net.URL;
 import java.util.Map;
 
-import org.jboss.aerogear.android.Callback;
-import org.jboss.aerogear.android.code.PipeModule;
-import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.pipeline.Pipe;
+import org.jboss.aerogear.android.core.Callback;
+import org.jboss.aerogear.android.pipe.module.PipeModule;
+import org.jboss.aerogear.android.pipe.http.HeaderAndBody;
+import org.jboss.aerogear.android.pipe.Pipe;
 
 /**
  * A module which can authenticate a user. It also provides the necessary tools

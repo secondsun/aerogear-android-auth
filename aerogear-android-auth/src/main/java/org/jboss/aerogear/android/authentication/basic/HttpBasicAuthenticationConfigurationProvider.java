@@ -14,16 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication;
+package org.jboss.aerogear.android.authentication.basic;
 
-import org.jboss.aerogear.android.ConfigurationProvider;
-import org.jboss.aerogear.android.authentication.impl.HttpBasicAuthenticationConfiguration;
+import org.jboss.aerogear.android.core.ConfigurationProvider;
+import org.jboss.aerogear.android.authentication.basic.HttpBasicAuthenticationConfiguration;
 
-/**
- * 
- * @author Summers
- */
-class HttpBasicAuthenticationConfigurationProvider implements ConfigurationProvider<HttpBasicAuthenticationConfiguration> {
+public class HttpBasicAuthenticationConfigurationProvider implements ConfigurationProvider<HttpBasicAuthenticationConfiguration> {
 
     /**
      * Returns a new instance of {@link HttpBasicAuthenticationConfiguration}

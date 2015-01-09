@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.digest;
 
 import android.util.Log;
 import java.security.MessageDigest;

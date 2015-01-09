@@ -14,18 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.jboss.aerogear.android.ConfigurationProvider;
-import org.jboss.aerogear.android.authentication.test.MainActivity;
+
 import org.jboss.aerogear.android.authentication.AuthenticationConfiguration;
 import org.jboss.aerogear.android.authentication.AuthenticationManager;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
-import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
+import org.jboss.aerogear.android.authentication.basic.HttpBasicAuthenticationConfiguration;
+import org.jboss.aerogear.android.authentication.digest.HttpDigestAuthenticationConfiguration;
+import org.jboss.aerogear.android.core.ConfigurationProvider;
+import org.jboss.aerogear.android.authentication.test.util.PatchedActivityInstrumentationTestCase;
 
 public class AuthenticatorManagerTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
 

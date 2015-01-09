@@ -14,17 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication;
+package org.jboss.aerogear.android.authentication.digest;
 
-import org.jboss.aerogear.android.ConfigurationProvider;
-import org.jboss.aerogear.android.authentication.impl.HttpBasicAuthenticationConfiguration;
-import org.jboss.aerogear.android.authentication.impl.HttpDigestAuthenticationConfiguration;
+import org.jboss.aerogear.android.core.ConfigurationProvider;
+import org.jboss.aerogear.android.authentication.basic.HttpBasicAuthenticationConfiguration;
+import org.jboss.aerogear.android.authentication.digest.HttpDigestAuthenticationConfiguration;
 
-/**
- * 
- * @author Summers
- */
-class HttpDigestAuthenticationConfigurationProvider implements ConfigurationProvider<HttpDigestAuthenticationConfiguration> {
+public class HttpDigestAuthenticationConfigurationProvider implements ConfigurationProvider<HttpDigestAuthenticationConfiguration> {
 
     /**
      * Returns a new instance of {@link HttpBasicAuthenticationConfiguration}

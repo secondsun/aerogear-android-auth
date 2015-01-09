@@ -17,7 +17,7 @@
 package org.jboss.aerogear.android.authentication.impl;
 
 import java.util.concurrent.CountDownLatch;
-import org.jboss.aerogear.android.Callback;
+import org.jboss.aerogear.android.core.Callback;
 import org.jboss.aerogear.android.http.HeaderAndBody;
 
 /**

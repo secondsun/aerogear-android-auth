@@ -19,7 +19,7 @@ package org.jboss.aerogear.android.authentication.impl;
 import org.robolectric.RobolectricTestRunner;
 import org.jboss.aerogear.android.authentication.AuthType;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
-import org.jboss.aerogear.android.impl.helper.UnitTestUtils;
+import org.jboss.aerogear.android.authentication.helper.UnitTestUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

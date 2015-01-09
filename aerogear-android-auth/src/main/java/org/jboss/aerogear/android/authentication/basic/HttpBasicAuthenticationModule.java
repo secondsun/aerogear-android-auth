@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.basic;
 
 import java.net.CookieManager;
 import java.net.CookieStore;
@@ -27,29 +27,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.aerogear.android.Callback;
+import org.jboss.aerogear.android.core.Callback;
 import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
-import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.pipeline.Pipe;
+import org.jboss.aerogear.android.pipe.http.HeaderAndBody;
+import org.jboss.aerogear.android.pipe.Pipe;
 
 import android.util.Base64;
 import android.util.Pair;
 import java.net.URI;
 import static org.jboss.aerogear.android.authentication.AbstractAuthenticationModule.USERNAME_PARAMETER_NAME;
-import org.jboss.aerogear.android.code.ModuleFields;
-import org.jboss.aerogear.android.http.HttpException;
+import org.jboss.aerogear.android.pipe.module.ModuleFields;
+import org.jboss.aerogear.android.pipe.http.HttpException;
 
 /**
  * This class provides Authentication using HTTP Basic
  * 
  * As per the <a href="http://www.ietf.org/rfc/rfc2617.txt">HTTP RFC</a> this
  * class will cache credentials and consumed by {@link Pipe} requests. This
- * module assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.Callback)
+ * module assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.core.Callback)
  * } or
- * {@link #logout(org.jboss.aerogear.android.Callback)
+ * {@link #logout(org.jboss.aerogear.android.core.Callback)
  * }.
  * 
- * {@link #enroll(java.util.Map, org.jboss.aerogear.android.Callback) } is not
+ * {@link #enroll(java.util.Map, org.jboss.aerogear.android.core.Callback) } is not
  * supported and will always fail.
  * 
  */

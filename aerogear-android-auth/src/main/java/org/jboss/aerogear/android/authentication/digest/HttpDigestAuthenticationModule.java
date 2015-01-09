@@ -14,31 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.digest;
 
 import android.util.Log;
 import java.net.URI;
 import java.net.URL;
 import java.util.Map;
-import org.jboss.aerogear.android.Callback;
+import org.jboss.aerogear.android.core.Callback;
 import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
-import static org.jboss.aerogear.android.authentication.AbstractAuthenticationModule.PASSWORD_PARAMETER_NAME;
-import static org.jboss.aerogear.android.authentication.AbstractAuthenticationModule.USERNAME_PARAMETER_NAME;
-import org.jboss.aerogear.android.code.ModuleFields;
-import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.http.HttpException;
+import org.jboss.aerogear.android.pipe.module.ModuleFields;
+import org.jboss.aerogear.android.pipe.http.HeaderAndBody;
+import org.jboss.aerogear.android.pipe.http.HttpException;
 
 /**
  * This class provides Authentication using HTTP Digest
  * 
  * As per the <a href="http://www.ietf.org/rfc/rfc2617.txt">HTTP RFC</a> this
- * class will cache credentials and consumed by {@link org.jboss.aerogear.android.pipeline.Pipe} requests. This module
- * assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.Callback)
+ * class will cache credentials and consumed by {@link org.jboss.aerogear.android.pipe.Pipe} requests. This module
+ * assumes that credentials provided are valid and will never fail on {@link #login(java.lang.String, java.lang.String, org.jboss.aerogear.android.core.Callback)
  * } or
- * {@link #logout(org.jboss.aerogear.android.Callback)
+ * {@link #logout(org.jboss.aerogear.android.core.Callback)
  * }.
  * 
- * {@link #enroll(java.util.Map, org.jboss.aerogear.android.Callback) } is not
+ * {@link #enroll(java.util.Map, org.jboss.aerogear.android.core.Callback) } is not
  * supported and will always fail.
  * 
  */
@@ -62,7 +60,7 @@ public class HttpDigestAuthenticationModule extends AbstractAuthenticationModule
      * @throws IllegalArgumentException if an endpoint can not be appended to
      *             baseURL
      */
-    protected HttpDigestAuthenticationModule(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout) {
+    public HttpDigestAuthenticationModule(URL baseURL, String loginEndpoint, String logoutEndpoint, Integer timeout) {
         this.runner = new DigestAuthenticationModuleRunner(baseURL, loginEndpoint, logoutEndpoint, timeout);
     }
 

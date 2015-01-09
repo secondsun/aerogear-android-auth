@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.test.basic;
 
 import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
@@ -24,57 +24,54 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.jboss.aerogear.android.authentication.test.MainActivity;
-import org.jboss.aerogear.android.Callback;
-import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.impl.pipeline.RestfulPipeConfiguration;
-import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
-import org.jboss.aerogear.android.impl.util.VoidCallback;
-import org.jboss.aerogear.android.pipeline.Pipe;
-import org.jboss.aerogear.android.pipeline.PipeManager;
 
-@Suppress
-public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTestCase implements AuthenticationModuleTest {
+import org.jboss.aerogear.android.authentication.basic.HttpBasicAuthenticationModule;
+import org.jboss.aerogear.android.authentication.test.MainActivity;
+import org.jboss.aerogear.android.authentication.test.AuthenticationModuleTest;
+import org.jboss.aerogear.android.core.Callback;
+import org.jboss.aerogear.android.pipe.http.HeaderAndBody;
+import org.jboss.aerogear.android.pipe.rest.RestfulPipeConfiguration;
+import org.jboss.aerogear.android.authentication.test.util.PatchedActivityInstrumentationTestCase;
+import org.jboss.aerogear.android.authentication.test.util.VoidCallback;
+import org.jboss.aerogear.android.pipe.Pipe;
+import org.jboss.aerogear.android.pipe.PipeManager;
+
+public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTestCase implements AuthenticationModuleTest {
 
     private static final URL CONTROLLER_URL;
     private static final RestfulPipeConfiguration AUTOBOT_CONFIG;
 
-    protected static final String TAG = HttpDigestIntegrationTest.class.getSimpleName();
+    protected static final String TAG = HttpBasicIntegrationTest.class.getSimpleName();
 
     static {
         try {
             CONTROLLER_URL = new URL("http://controller-aerogear.rhcloud.com/aerogear-controller-demo/autobots");
             AUTOBOT_CONFIG = PipeManager.config("autobots", RestfulPipeConfiguration.class);
             AUTOBOT_CONFIG.withUrl(CONTROLLER_URL);
-
         } catch (MalformedURLException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    public HttpDigestIntegrationTest() {
+    public HttpBasicIntegrationTest() {
         super(MainActivity.class);
     }
 
+    @Suppress
     public void testBadLogin() throws InterruptedException {
-        HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
+        HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
         AUTOBOT_CONFIG.module(basicAuthModule);
-        final CountDownLatch authLatch = new CountDownLatch(1);
-        basicAuthModule.login("baduser", "badpass", new Callback<HeaderAndBody>() {
+        basicAuthModule.login("fakeUser", "fakePass", new Callback<HeaderAndBody>() {
 
             @Override
-            public void onFailure(Exception ex) {
-                Log.e(TAG, ex.getMessage(), ex);
-                authLatch.countDown();
+            public void onFailure(Exception arg0) {
             }
 
             @Override
             public void onSuccess(HeaderAndBody arg0) {
-                authLatch.countDown();
             }
         });
-        authLatch.await(10, TimeUnit.SECONDS);
         Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
@@ -97,26 +94,26 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
 
     }
 
+    @Suppress
     public void testLogin() throws InterruptedException {
-        HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
+        HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
         AUTOBOT_CONFIG.module(basicAuthModule);
-        final CountDownLatch authLatch = new CountDownLatch(1);
-        basicAuthModule.login("agnes", "123", new Callback<HeaderAndBody>() {
+        basicAuthModule.login("john", "123", new Callback<HeaderAndBody>() {
 
             @Override
             public void onFailure(Exception ex) {
                 Log.e(TAG, ex.getMessage(), ex);
-                authLatch.countDown();
             }
 
             @Override
             public void onSuccess(HeaderAndBody arg0) {
-                authLatch.countDown();
+                // TODO Auto-generated method stub
+
             }
         });
-        authLatch.await(10, TimeUnit.SECONDS);
         Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
+
         final CountDownLatch latch = new CountDownLatch(1);
 
         autobots.read(new Callback<List<String>>() {
@@ -134,29 +131,25 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
             }
         });
 
-        latch.await(1000, TimeUnit.SECONDS);
+        latch.await(10, TimeUnit.SECONDS);
         assertTrue(success.get());
     }
 
+    @Suppress
     public void testLogout() throws InterruptedException {
-        HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
+        HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
         AUTOBOT_CONFIG.module(basicAuthModule);
-        final CountDownLatch authLatch = new CountDownLatch(1);
-        basicAuthModule.login("agnes", "123", new Callback<HeaderAndBody>() {
+        basicAuthModule.login("john", "123", new Callback<HeaderAndBody>() {
 
             @Override
-            public void onFailure(Exception ex) {
-                Log.e(TAG, ex.getMessage(), ex);
-                authLatch.countDown();
+            public void onFailure(Exception arg0) {
             }
 
             @Override
             public void onSuccess(HeaderAndBody arg0) {
-                authLatch.countDown();
             }
         });
-        authLatch.await(10, TimeUnit.SECONDS);
         Pipe<String> autobots = AUTOBOT_CONFIG.forClass(String.class);
         final CountDownLatch latch = new CountDownLatch(1);
 
@@ -179,9 +172,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
 
         final CountDownLatch latch2 = new CountDownLatch(1);
 
-        final CountDownLatch logoutLatch = new CountDownLatch(1);
-        basicAuthModule.logout(new VoidCallback(logoutLatch));
-        logoutLatch.await(2, TimeUnit.SECONDS);
+        basicAuthModule.logout(new VoidCallback());
         autobots.read(new Callback<List<String>>() {
 
             @Override

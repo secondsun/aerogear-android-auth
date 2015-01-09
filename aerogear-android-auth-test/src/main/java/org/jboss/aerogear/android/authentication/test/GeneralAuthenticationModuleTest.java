@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,11 +22,10 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import junit.framework.Assert;
-import org.jboss.aerogear.android.authentication.test.MainActivity;
-import org.jboss.aerogear.android.Callback;
 import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
-import org.jboss.aerogear.android.impl.util.PatchedActivityInstrumentationTestCase;
+import org.jboss.aerogear.android.core.Callback;
+import org.jboss.aerogear.android.authentication.test.util.PatchedActivityInstrumentationTestCase;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
 

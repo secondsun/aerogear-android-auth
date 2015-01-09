@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.authentication.impl;
+package org.jboss.aerogear.android.authentication.test;
 
 import java.util.concurrent.CountDownLatch;
-import org.jboss.aerogear.android.Callback;
-import org.jboss.aerogear.android.http.HeaderAndBody;
+import org.jboss.aerogear.android.core.Callback;
+import org.jboss.aerogear.android.pipe.http.HeaderAndBody;
 
 /**
  * This interface sets up all of the static values for authentication tests
