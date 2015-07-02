@@ -16,6 +16,7 @@
  */
 package org.jboss.aerogear.android.authentication.test.basic;
 
+import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
 import java.net.MalformedURLException;
@@ -35,7 +36,11 @@ import org.jboss.aerogear.android.authentication.test.util.PatchedActivityInstru
 import org.jboss.aerogear.android.authentication.test.util.VoidCallback;
 import org.jboss.aerogear.android.pipe.Pipe;
 import org.jboss.aerogear.android.pipe.PipeManager;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(AndroidJUnit4.class)
 public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTestCase implements AuthenticationModuleTest {
 
     private static final URL CONTROLLER_URL;
@@ -58,6 +63,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
     }
 
     @Suppress
+    @Test
     public void testBadLogin() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
@@ -90,11 +96,12 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
         });
 
         latch.await(10, TimeUnit.SECONDS);
-        assertFalse(success.get());
+        Assert.assertFalse(success.get());
 
     }
 
     @Suppress
+    @Test
     public void testLogin() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
@@ -132,10 +139,11 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
         });
 
         latch.await(10, TimeUnit.SECONDS);
-        assertTrue(success.get());
+        Assert.assertTrue(success.get());
     }
 
     @Suppress
+    @Test
     public void testLogout() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
         final AtomicBoolean success = new AtomicBoolean(false);
@@ -168,7 +176,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
         });
 
         latch.await(10, TimeUnit.SECONDS);
-        assertTrue(success.get());
+        Assert.assertTrue(success.get());
 
         final CountDownLatch latch2 = new CountDownLatch(1);
 
@@ -189,7 +197,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
         });
 
         latch2.await(10, TimeUnit.SECONDS);
-        assertFalse(success.get());
+        Assert.assertFalse(success.get());
 
     }
 

@@ -16,6 +16,7 @@
  */
 package org.jboss.aerogear.android.authentication.test.digest;
 
+import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
 import java.net.MalformedURLException;
@@ -35,8 +36,12 @@ import org.jboss.aerogear.android.authentication.test.util.PatchedActivityInstru
 import org.jboss.aerogear.android.authentication.test.util.VoidCallback;
 import org.jboss.aerogear.android.pipe.Pipe;
 import org.jboss.aerogear.android.pipe.PipeManager;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 @Suppress
+@RunWith(AndroidJUnit4.class)
 public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTestCase implements AuthenticationModuleTest {
 
     private static final URL CONTROLLER_URL;
@@ -59,6 +64,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
         super(MainActivity.class);
     }
 
+    @Test
     public void testBadLogin() throws InterruptedException {
         HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
         final AtomicBoolean success = new AtomicBoolean(false);
@@ -96,10 +102,11 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
         });
 
         latch.await(10, TimeUnit.SECONDS);
-        assertFalse(success.get());
+        Assert.assertFalse(success.get());
 
     }
 
+    @Test
     public void testLogin() throws InterruptedException {
         HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
         final AtomicBoolean success = new AtomicBoolean(false);
@@ -138,9 +145,10 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
         });
 
         latch.await(1000, TimeUnit.SECONDS);
-        assertTrue(success.get());
+        Assert.assertTrue(success.get());
     }
 
+    @Test
     public void testLogout() throws InterruptedException {
         HttpDigestAuthenticationModule basicAuthModule = new HttpDigestAuthenticationModule(CONTROLLER_URL, "/autobots", "", 60000);
         final AtomicBoolean success = new AtomicBoolean(false);
@@ -178,7 +186,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
         });
 
         latch.await(10, TimeUnit.SECONDS);
-        assertTrue(success.get());
+        Assert.assertTrue(success.get());
 
         final CountDownLatch latch2 = new CountDownLatch(1);
 
@@ -201,7 +209,7 @@ public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTes
         });
 
         latch2.await(10, TimeUnit.SECONDS);
-        assertFalse(success.get());
+        Assert.assertFalse(success.get());
 
     }
 
