@@ -16,6 +16,7 @@
  */
 package org.jboss.aerogear.android.authentication.test;
 
+import android.support.test.runner.AndroidJUnit4;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -28,8 +29,12 @@ import org.jboss.aerogear.android.authentication.basic.HttpBasicAuthenticationCo
 import org.jboss.aerogear.android.authentication.digest.HttpDigestAuthenticationConfiguration;
 import org.jboss.aerogear.android.core.ConfigurationProvider;
 import org.jboss.aerogear.android.authentication.test.util.PatchedActivityInstrumentationTestCase;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class AuthenticatorManagerTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+@RunWith(AndroidJUnit4.class)
+public class AuthenticatorManagerTest extends PatchedActivityInstrumentationTestCase {
 
     public AuthenticatorManagerTest() {
         super(MainActivity.class);
@@ -48,6 +53,7 @@ public class AuthenticatorManagerTest extends PatchedActivityInstrumentationTest
         }
     }
 
+    @Test
     public void testAddAuthenticatorFailsWithUnsupportedType() {
         try {
 
@@ -59,58 +65,63 @@ public class AuthenticatorManagerTest extends PatchedActivityInstrumentationTest
                 }
             }.getClass());
 
-            fail("Should have thrown exception");
+            Assert.fail("Should have thrown exception");
         } catch (IllegalArgumentException ex) {
             // ignore
         }
 
     }
 
+    @Test
     public void testAddSimpleAuthenticator() {
 
         AuthenticationManager.registerConfigurationProvider(DummAuthenticationConfiguration.class, new DummyAuthenticationConfigProvider());
 
         AuthenticationConfiguration config = AuthenticationManager.config("test", DummAuthenticationConfiguration.class);
 
-        assertTrue(config instanceof DummAuthenticationConfiguration);
+        Assert.assertTrue(config instanceof DummAuthenticationConfiguration);
 
     }
 
+    @Test
     public void testAddAndGetSimpleAuthenticator() {
         AuthenticationConfiguration config = AuthenticationManager.config(SIMPLE_MODULE_NAME, HttpBasicAuthenticationConfiguration.class);
 
         AuthenticationModule simpleAuthModule = config.baseURL(SIMPLE_URL).asModule();
-        assertEquals(simpleAuthModule, AuthenticationManager.getModule(SIMPLE_MODULE_NAME));
+        Assert.assertEquals(simpleAuthModule, AuthenticationManager.getModule(SIMPLE_MODULE_NAME));
 
     }
 
+    @Test
     public void testNullBaseURLFails() {
 
         HttpDigestAuthenticationConfiguration config = AuthenticationManager.config(SIMPLE_MODULE_NAME, HttpDigestAuthenticationConfiguration.class);
         try {
             config.asModule();
-            fail("Should not pass");
+            Assert.fail("Should not pass");
         } catch (IllegalStateException e) {
             // ignore;
         }
 
     }
 
+    @Test
     public void testAddAuthenticator() {
 
         HttpDigestAuthenticationConfiguration config = AuthenticationManager.config(SIMPLE_MODULE_NAME, HttpDigestAuthenticationConfiguration.class);
 
         AuthenticationModule simpleAuthModule = config.loginEndpoint("testLogin").logoutEndpoint("testLogout").baseURL(SIMPLE_URL).asModule();
 
-        assertEquals(simpleAuthModule, AuthenticationManager.getModule(SIMPLE_MODULE_NAME));
+        Assert.assertEquals(simpleAuthModule, AuthenticationManager.getModule(SIMPLE_MODULE_NAME));
 
-        assertEquals("testLogin", simpleAuthModule.getLoginEndpoint());
-        assertEquals("testLogout", simpleAuthModule.getLogoutEndpoint());
+        Assert.assertEquals("testLogin", simpleAuthModule.getLoginEndpoint());
+        Assert.assertEquals("testLogout", simpleAuthModule.getLogoutEndpoint());
     }
 
+    @Test
     public void testGetNullAuthModule() {
 
-        assertNull(AuthenticationManager.getModule("nullModule"));
+        Assert.assertNull(AuthenticationManager.getModule("nullModule"));
     }
 
     private static final class DummyAuthenticationConfigProvider implements ConfigurationProvider<DummAuthenticationConfiguration> {

@@ -45,13 +45,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.aerogear</groupId>
-            <artifactId>aerogear-android-auth</artifactId>
-            <version>${project.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>${mockito.version}</version>
@@ -95,12 +88,6 @@
             <groupId>com.android.support.test</groupId>
             <artifactId>runner</artifactId>
             <version>0.3</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.android.support.test</groupId>
-            <artifactId>runner</artifactId>
-            <version>0.3</version>
             <type>aar</type>
             <exclusions>
                 <exclusion>
@@ -118,12 +105,6 @@
             <artifactId>rules</artifactId>
             <version>0.3</version>
             <type>aar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.android.support.test</groupId>
-            <artifactId>rules</artifactId>
-            <version>0.3</version>
-            <scope>provided</scope>
         </dependency>
 
     </dependencies>
