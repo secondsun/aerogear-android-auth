@@ -34,9 +34,7 @@ Add to your application's `build.gradle` file
 
 ```
 dependencies {
-  compile 'org.jboss.aerogear:aerogear-android-core:2.0.0'
-  compile 'org.jboss.aerogear:aerogear-android-pipe:2.0.0'
-  compile 'org.jboss.aerogear:aerogear-android-auth:2.0.0'
+  compile 'org.jboss.aerogear:aerogear-android-auth:2.1.0'
 }
 ```
 
@@ -49,7 +47,7 @@ Include the following dependencies in your project's `pom.xml`
 <dependency>
   <groupId>org.jboss.aerogear</groupId>
   <artifactId>aerogear-android-auth</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
   <scope>provided</scope>
   <type>jar</type>
 </dependency>
@@ -57,7 +55,7 @@ Include the following dependencies in your project's `pom.xml`
 <dependency>
   <groupId>org.jboss.aerogear</groupId>
   <artifactId>aerogear-android-auth</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
   <type>aar</type>
 </dependency>
 ```
