@@ -22,11 +22,12 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import junit.framework.Assert;
+
 import org.jboss.aerogear.android.authentication.AbstractAuthenticationModule;
 import org.jboss.aerogear.android.authentication.AuthenticationModule;
 import org.jboss.aerogear.android.core.Callback;
 import org.jboss.aerogear.android.authentication.test.util.PatchedActivityInstrumentationTestCase;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
