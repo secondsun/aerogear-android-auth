@@ -17,7 +17,6 @@
 package org.jboss.aerogear.android.authentication.test.basic;
 
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -37,6 +36,7 @@ import org.jboss.aerogear.android.authentication.test.util.VoidCallback;
 import org.jboss.aerogear.android.pipe.Pipe;
 import org.jboss.aerogear.android.pipe.PipeManager;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -62,7 +62,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
         super(MainActivity.class);
     }
 
-    @Suppress
+    @Ignore
     @Test
     public void testBadLogin() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
@@ -100,7 +100,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
 
     }
 
-    @Suppress
+    @Ignore
     @Test
     public void testLogin() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);
@@ -142,7 +142,7 @@ public class HttpBasicIntegrationTest extends PatchedActivityInstrumentationTest
         Assert.assertTrue(success.get());
     }
 
-    @Suppress
+    @Ignore
     @Test
     public void testLogout() throws InterruptedException {
         HttpBasicAuthenticationModule basicAuthModule = new HttpBasicAuthenticationModule(CONTROLLER_URL);

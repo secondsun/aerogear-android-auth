@@ -65,6 +65,7 @@ public class GeneralAuthenticationModuleTest extends PatchedActivityInstrumentat
                 latch.countDown();
             }
         };
+
         module.enroll(new HashMap<String, String>(), throwIfSuccess);
         module.login("username", "password", throwIfSuccess);
         module.logout(throwIfSuccess);
