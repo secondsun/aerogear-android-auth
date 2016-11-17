@@ -17,7 +17,6 @@
 package org.jboss.aerogear.android.authentication.test.digest;
 
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -37,10 +36,11 @@ import org.jboss.aerogear.android.authentication.test.util.VoidCallback;
 import org.jboss.aerogear.android.pipe.Pipe;
 import org.jboss.aerogear.android.pipe.PipeManager;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@Suppress
+@Ignore
 @RunWith(AndroidJUnit4.class)
 public class HttpDigestIntegrationTest extends PatchedActivityInstrumentationTestCase implements AuthenticationModuleTest {
 
