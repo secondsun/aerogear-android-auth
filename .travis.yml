@@ -19,7 +19,6 @@ android:
     - android-24
     - extra-google-m2repository
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-24
 
 env:
   matrix:
@@ -30,13 +29,15 @@ env:
     - ANDROID_SDK="android-24" ANDROID_EMULATOR="android-21" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-21"
     - ANDROID_SDK="android-24" ANDROID_EMULATOR="android-22" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-22"
     - ANDROID_SDK="android-24" ANDROID_EMULATOR="android-24" ANDROID_ABI="armeabi-v7a" ANDROID_PKGS="sys-img-armeabi-v7a-android-24"
+
 before_install:
+
+  # Install Android dependencies only on this Matrix
+  - echo y | android update sdk --no-ui --all --filter ${ANDROID_EMULATOR},${ANDROID_PKGS}
 
   #################################################
   ########## maven-android-sdk-deployer ###########
   #################################################
-  # Install Android dependencies only on this Matrix
-  - echo y | android update sdk --no-ui --all --filter ${ANDROID_EMULATOR},${ANDROID_PKGS}
 
   # Checkout maven-android-sdk-deployer
   - git clone git://github.com/mosabua/maven-android-sdk-deployer.git
