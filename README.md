@@ -74,7 +74,6 @@ For more details about that please consult [our auth documentation](http://aerog
 
 Take a look in our demo apps
 
-* [AG Reddit](https://github.com/aerogear/aerogear-android-cookbook/blob/master/AGReddit)
 * [AuthExamples](https://github.com/aerogear/aerogear-android-cookbook/blob/master/AuthExamples)
 * [AeroDoc](https://github.com/aerogear/aerogear-android-cookbook/blob/master/AeroDoc)
 
