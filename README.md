@@ -4,7 +4,7 @@ AeroGear's Android libraries were built as jar and aar packages using [Maven](ht
 
 ## Auth
 
-AeroGear Android Auth will give developers the ability to integrate their Android application with RESTful services.
+AeroGear Android Auth provides Pipe modules for HTTP Basic and HTTP Digest authentication.
 
 |                 | Project Info  |
 | --------------- | ------------- |
