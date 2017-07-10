@@ -24,6 +24,9 @@ android:
     - android-${ANDROID_TARGET}
     - android-${ANDROID_EMULATOR}
     - sys-img-armeabi-v7a-android-${ANDROID_EMULATOR}
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-android-support
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -34,6 +37,10 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
+
+before_install: 
+  # For update platform-tools and tools to avoid old version installed
+  - echo y | android update sdk --no-ui --all --filter "platform-tools,tools"    
 
 before_script:
 
