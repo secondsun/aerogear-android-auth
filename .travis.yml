@@ -24,6 +24,9 @@ android:
     - android-${ANDROID_TARGET}
     - android-${ANDROID_EMULATOR}
     - sys-img-armeabi-v7a-android-${ANDROID_EMULATOR}
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-android-support
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
