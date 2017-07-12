@@ -1,12 +1,9 @@
 # AeroGear Android Auth
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2016.svg)](http://github.com/aerogear/aerogear-android-auth)
-[![Travis](https://img.shields.io/travis/aerogear/aerogear-android-auth.svg)](http://travis-ci.org/aerogear/aerogear-android-auth)
+[![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-android-auth/master.svg)](https://circleci.com/gh/aerogear/aerogear-android-auth)
 [![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
 [![Maven Central](https://img.shields.io/maven-central/v/org.jboss.aerogear/aerogear-android-auth.svg)](http://search.maven.org/#search%7Cga%7C1%7Caerogear-android-auth)
 [![Javadocs](http://www.javadoc.io/badge/org.jboss.aerogear/aerogear-android-auth.svg?color=blue)](http://www.javadoc.io/doc/org.jboss.aerogear/aerogear-android-auth)
-
-AeroGear's Android libraries were built as jar and aar packages using [Maven](http://maven.apache.org/) and the [android-maven-plugin](https://github.com/jayway/maven-android-plugin). The project follows the standard Maven layout so it can be imported directly into most IDEs as a Maven project.
 
 ## Auth
 
@@ -15,7 +12,7 @@ AeroGear Android Auth provides Pipe modules for HTTP Basic and HTTP Digest authe
 |                 | Project Info  |
 | --------------- | ------------- |
 | License:        | Apache License, Version 2.0  |
-| Build:          | Maven  |
+| Build:          | Gradle  |
 | Documentation:  | https://aerogear.org/android/  |
 | Issue tracker:  | https://issues.jboss.org/browse/AGDROID  |
 | Mailing lists:  | [aerogear-users](http://aerogear-users.1116366.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-users))  |
@@ -29,10 +26,6 @@ Please take a look at the [step by step guide](http://aerogear.org/docs/guides/a
 
 * [aerogear-android-core](http://github.com/aerogear/aerogear-android-core) 
 * [aerogear-android-pipe](http://github.com/aerogear/aerogear-android-pipe) 
-
-## Usage
-
-There are two supported ways of developing apps using AeroGear for Android: Android Studio and Maven.
 
 ### Android Studio
 
@@ -50,14 +43,6 @@ Include the following dependencies in your project's `pom.xml`
 
 
 ```xml
-<dependency>
-  <groupId>org.jboss.aerogear</groupId>
-  <artifactId>aerogear-android-auth</artifactId>
-  <version>3.1.0</version>
-  <scope>provided</scope>
-  <type>jar</type>
-</dependency>
-
 <dependency>
   <groupId>org.jboss.aerogear</groupId>
   <artifactId>aerogear-android-auth</artifactId>
